@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Whatsapp2</string>
-    <string name="telefono">Número de telefono</string>
-    <string name="codigo">Código</string>
-    <string name="enviar">Enviar código</string>
-    <string name="nombre">nombre</string>
-</resources>
