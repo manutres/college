@@ -3,27 +3,6 @@
 {% block navbar %}
 <div class="navbar-collapse justify-content-end" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-        <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{user['email']}}
-            </a>    
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="dropdown-item" href="#">{{user.name}}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="dropdown-item" href="#">{{user.lastname}}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <form class="dropdown-item" action="/logout" method="POST">
-                        <button class="btn btn-primary btn-block" type="submit" formaction="/logout">logout</button>
-                    </form>
-                </div> 
-            </div>
-        </div>
-    </div>
 </div>
 {% endblock %}
 

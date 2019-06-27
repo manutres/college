@@ -1,7 +1,16 @@
+.row {
+    margin-top: 5%;
+}
+
 body,html {
     height: 100%;
   }
 
-  .fill {
-      height: 90%;
-  }
+.fill {
+    height: 90%;
+}
+
+.navbar {
+    background-color: #FF0000;
+    border-color: #FF0000;
+}

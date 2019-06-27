@@ -1,0 +1,2330 @@
+ INFO: web server starting...:80:199
+ERROR: system call:bind Errno=13 exiting pid=199
+ INFO: web server starting...:8080:202
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:221
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:235
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:244
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:266
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:276
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:287
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:297
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:307
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:82
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:87
+ERROR: system call:bind Errno=98 exiting pid=87
+ INFO: web server starting...:8080:95
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:109
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:121
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:141
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:150
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:160
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:169
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:179
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:189
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:201
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:218
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:245
+ERROR: system call:bind Errno=98 exiting pid=245
+ INFO: web server starting...:8080:248
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:264
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:273
+ERROR: system call:bind Errno=98 exiting pid=273
+ INFO: web server starting...:8080:276
+ERROR: system call:bind Errno=98 exiting pid=276
+ INFO: web server starting...:8080:279
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:289
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:299
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:318
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:330
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:342
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:354
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:364
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:376
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:389
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:399
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:406
+ERROR: system call:bind Errno=98 exiting pid=406
+ INFO: web server starting...:8080:409
+ INFO: web server starting...:8080:417
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:427
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:437
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:454
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:469
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:483
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:496
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:507
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:522
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:532
+ERROR: system call:bind Errno=98 exiting pid=532
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:537
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:547
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:106
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:118
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:132
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:142
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:152
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:167
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:177
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:187
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:202
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:212
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:256
+ INFO: web server starting...:8080:267
+ INFO: web server starting...:8080:272
+ INFO: web server starting...:8080:276
+ INFO: web server starting...:8080:280
+ INFO: web server starting...:8080:287
+ INFO: web server starting...:8080:293
+ INFO: web server starting...:8080:298
+ INFO: web server starting...:8080:302
+ INFO: web server starting...:8080:311
+ INFO: web server starting...:8080:320
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:332
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:345
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:356
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:782
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:800
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:816
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:832
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:848
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:870
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:891
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:912
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:928
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:944
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:1063
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1108
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1132
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:1148
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1182
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1211
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1245
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:1261
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1285
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1314
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1343
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1391
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1415
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:1431
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:1447
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:1463
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:1479
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1503
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1527
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1551
+ INFO: web server starting...:8080:1565
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1589
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1613
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:1634
+ INFO: web server starting...:8080:1648
+ INFO: web server starting...:8080:1662
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :Host:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :Host:4
+ INFO: web server starting...:8080:175
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :Host:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :Host:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:192
+ INFO: web server starting...:8080:206
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:224
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:240
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:256
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:274
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:290
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:306
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:322
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:338
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:355
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:390
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:409
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:425
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:442
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:459
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:496
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:518
+ INFO: web server starting...:8080:532
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:587
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:604
+ INFO: web server starting...:8080:618
+ INFO: web server starting...:8080:632
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:50
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:94
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:115
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:137
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:164
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:179
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: web server starting...:8080:197
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: web server starting...:8080:214
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:229
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:245
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:262
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:277
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:294
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:333
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:350
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: web server starting...:8080:370
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:387
+ INFO: web server starting...:8080:401
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:417
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:444
+ INFO: web server starting...:8080:458
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:475
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:495
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:512
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:527
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:542
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:557
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:572
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:587
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:611
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: retval::4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:647
+ INFO: web server starting...:8080:656
+ INFO: web server starting...:8080:670
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:694
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:718
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:742
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: Request Method: :GET:4
+ INFO: Request Method: :GET:4
+ INFO: web server starting...:8080:757
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: Request Method: :GET:4
+ INFO: Request Method: :GET:4
+ INFO: Select:Timeout de conexion:4
+ INFO: web server starting...:8080:772
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request Method: :GET:4
+ INFO: Request Method: :GET:4
+ INFO: Request Method: :GET:4
+ INFO: Select:Timeout de conexion:4
+ INFO: web server starting...:8080:830
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: Select:Timeout de conexion:4
+ INFO: web server starting...:8080:856
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:920
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:187
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:241
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:253
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:263
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:274
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request::4
+ INFO: web server starting...:8080:284
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request::4
+ INFO: web server starting...:8080:294
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request::4
+ INFO: web server starting...:8080:304
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request::4
+ INFO: web server starting...:8080:319
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request::4
+ INFO: web server starting...:8080:329
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request::4
+ INFO: web server starting...:8080:339
+ INFO: request:Ha llegado una peticion:4
+ INFO: Request::4
+ INFO: web server starting...:8080:349
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:377
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:408
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:447
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:477
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:496
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:520
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:532
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:579
+ERROR: system call:bind Errno=98 exiting pid=579
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:704
+ERROR: system call:bind Errno=98 exiting pid=704
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:741
+ERROR: system call:bind Errno=98 exiting pid=741
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:754
+ERROR: system call:bind Errno=98 exiting pid=754
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8080:766
+ERROR: system call:bind Errno=98 exiting pid=766
+ INFO: web server starting...:8080:775
+ERROR: system call:bind Errno=98 exiting pid=775
+ INFO: web server starting...:8080:784
+ERROR: system call:bind Errno=98 exiting pid=784
+ INFO: web server starting...:8080:793
+ERROR: system call:bind Errno=98 exiting pid=793
+ INFO: web server starting...:8080:802
+ERROR: system call:bind Errno=98 exiting pid=802
+ INFO: web server starting...:8081:811
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:840
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:859
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:883
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:928
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:941
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:954
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:967
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:985
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1007
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1020
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1037
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1052
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1068
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1081
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1094
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1119
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1218
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1235
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1248
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1261
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1274
+ INFO: web server starting...:8081:1283
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1330
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1363
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1470
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1488
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1501
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1514
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1547
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1559
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1571
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1583
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1595
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:5
+ INFO: request:Ha llegado una peticion:6
+ INFO: request:Ha llegado una peticion:7
+ INFO: request:Ha llegado una peticion:8
+ INFO: request:Ha llegado una peticion:9
+ INFO: web server starting...:8081:1610
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:5
+ INFO: request:Ha llegado una peticion:6
+ INFO: web server starting...:8081:1622
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:5
+ INFO: request:Ha llegado una peticion:6
+ INFO: request:Ha llegado una peticion:7
+ INFO: request:Ha llegado una peticion:8
+ INFO: request:Ha llegado una peticion:9
+ INFO: request:Ha llegado una peticion:10
+ INFO: request:Ha llegado una peticion:11
+ INFO: web server starting...:8081:1639
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1665
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1677
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1689
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1704
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1716
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1728
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1740
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1752
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1764
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1776
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1788
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1803
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1813
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1832
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1881
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1900
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1919
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1938
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1957
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1968
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1979
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:1994
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2004
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2015
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2027
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2039
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2050
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2061
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2075
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2086
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2111
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2127
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2144
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2154
+ INFO: web server starting...:8081:2163
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2174
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2185
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2196
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2209
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2220
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2231
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2242
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2253
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2264
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2310
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2323
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2334
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: web server starting...:8081:2345
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4
+ INFO: request:Ha llegado una peticion:4

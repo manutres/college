@@ -448,8 +448,6 @@ void handle_sigchld(int signal) {
  * Funciones auxiliares
  ******************************************************************************/
 
-
-
 void print_hd_help() {
     printf("Uso: hd [-l NLINES] [-b NBYTES] [-t BSIZE] [FILE1] [FILE2]...\n"
                    "\tOpciones:\n"
@@ -1968,10 +1966,8 @@ int main(int argc, char** argv)
         pids_procesos[i]= -1;
     }
 
-
     sigemptyset(&signal_child);
     sigaddset(&signal_child, SIGCHLD);
-
 
     //Bloquear la señal SIGINIT
     sigset_t blocked_sig_int;
@@ -1982,7 +1978,6 @@ int main(int argc, char** argv)
         exit(EXIT_FAILURE);
     }
 
-
     //Bloquear la seña SIGQUIT
     sigset_t ignore_sig_int;
     sigemptyset(&ignore_sig_int);
@@ -1991,8 +1986,6 @@ int main(int argc, char** argv)
         perror(" SIGPROCMASK: SIGQUIT");
         exit(EXIT_FAILURE);
     }
-
-
 
     struct sigaction sa;
     memset(&sa, 0, sizeof(sa));
@@ -2003,8 +1996,6 @@ int main(int argc, char** argv)
         perror(0);
         exit(EXIT_FAILURE);
     }
-
-
 
     char* buf;
     struct cmd* cmd;

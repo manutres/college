@@ -1,0 +1,4 @@
+#!/bin/bash
+gcc web_sstt.c -o server &&
+./server 8081 ./www/ && 
+tail -f ./www/webserver.log
