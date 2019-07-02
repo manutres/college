@@ -269,7 +269,7 @@ void process_web_request(int descriptorFichero)
 			struct http_response * response;
 			char responseString[BUFSIZE] = {0};
 			char full_path[200];
-			char content_length[10];
+			char content_length[20];
 			int requested_file_fd;
 			struct stat file_stat;
 			off_t offset = 0;
@@ -331,7 +331,7 @@ void process_web_request(int descriptorFichero)
 
 						if(!strcmp(EMAIL, value)) 
 						{
-							char body[] = "EMAIL CORRECTO";
+							char * body = "EMAIL CORRECTO";
 							sprintf(content_length,"%ld", strlen(body));
 
 							response = create_response("200", "OK");
