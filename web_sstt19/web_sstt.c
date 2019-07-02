@@ -23,8 +23,9 @@
 #define PROHIBIDO	403
 #define NOENCONTRADO	404
 #define NUM_HEADERS 20
-#define WWW_PATH "/mnt/c/Users/manutres/Desktop/universidad/tercero/SSTT/practicas/web_sstt19/www"
+#define WWW_PATH "../www"
 #define NUM_EXTENSION 11
+#define EMAIL "manu%40um.es"
 
 
 
@@ -174,9 +175,9 @@ void response_to_string(char * buffer, const struct http_response * response)
 	response->status_string);
 	for(int i = 0; i< response->next_header; i++)
 	{
-		count += sprintf(&buffer[count],"%s: %s\r\n", response->header[i].key, response->header[i].value);
+		count += sprintf(buffer+count,"%s: %s\r\n", response->header[i].key, response->header[i].value);
 	}
-	count += sprintf(&buffer[count], "\r\n");
+	count += sprintf(buffer + count, "\r\n");
 	buffer[count] = 0;
 }
 
@@ -249,6 +250,7 @@ void get_cookies(struct lista_cookies * cookies, const struct http_request * req
 	}
 }
 
+
 void process_web_request(int descriptorFichero)
 {
 	debug(LOG,"request","Ha llegado una peticion",descriptorFichero);
@@ -303,48 +305,109 @@ void process_web_request(int descriptorFichero)
 				write(descriptorFichero, responseString, strlen(responseString));
 				write(descriptorFichero, body, strlen(body));
 			}
-			
-			if(!strcmp(request->method, "GET"))
+			else 
 			{
-				sprintf(full_path,"%s%s", WWW_PATH, request->path);
-				requested_file_fd = open(full_path, O_RDONLY);
-				
-				if(requested_file_fd != -1) 
+				if(!strcmp(request->method, "GET"))
 				{
-					fstat(requested_file_fd, &file_stat);
-					sprintf(content_length, "%ld", file_stat.st_size);
+					//DESDE AQUI#####################################################
+					//extraemos los parametros del path si los hubiera
+					char * path;
+					char * query_params;
+					if(strchr(request->path, '?')) {
+						char * offsetAux = request->path;
+						path = getToken(&offsetAux, '?');
+						query_params = strdup(offsetAux);
+					}
+					else {
+						path = request->path;
+					}
+					
+					//asumiendo que siempre va a llevar una query este path
+					if(!strcmp(path, "/checkmail")) 
+					{
+						char * offsetAux = query_params;
+						char * key = getToken(&offsetAux, '=');
+						char * value = strdup(offsetAux);
 
-					response = create_response("200", "OK");
-					set_header(response, "Server", "web_sstt");
-					set_header(response, "Content-Type", get_file_extension(request->path));
-					set_header(response, "Connection", "keep-alive");
-					set_header(response, "Keep-Alive", "timeout=5");
-					set_header(response, "Set-Cookie", cookie_value_str);
-					set_header(response, "Content-Length", content_length);
+						if(!strcmp(EMAIL, value)) 
+						{
+							char body[] = "EMAIL CORRECTO";
+							sprintf(content_length,"%ld", strlen(body));
 
-					response_to_string(responseString,response);
-					write(descriptorFichero, responseString, strlen(responseString));
-					sendfile(descriptorFichero, requested_file_fd, &offset, file_stat.st_size);
+							response = create_response("200", "OK");
+							set_header(response, "Server", "web_sstt");
+							set_header(response, "Content-Type", "text/plain");
+							set_header(response, "Connection", "keep-alive");
+							set_header(response, "Keep-Alive", "timeout=5");
+							set_header(response, "Content-Length", content_length);
 
-					free_cookies(cookies);
-					close(requested_file_fd);
-				} 
-				else 
-				{
-					char * body = "<body><h1>404 NOT FOUND</h1></body>";
-					sprintf(content_length,"%ld", strlen(body));
+							response_to_string(responseString,response);
+							write(descriptorFichero, responseString, strlen(responseString));
+							write(descriptorFichero, body, strlen(body));
+						}
+						else 
+						{
+							char body[] = "EMAIL INCORRECTO";
+							sprintf(content_length,"%ld", strlen(body));
 
-					response = create_response("404", "NOT FOUND");
-					set_header(response, "Server", "web_sstt");
-					set_header(response, "Content-Type", "text/html");
-					set_header(response, "Connection", "keep-alive");
-					set_header(response, "Content-Length", content_length);
+							response = create_response("200", "OK");
+							set_header(response, "Server", "web_sstt");
+							set_header(response, "Connection", "keep-alive");
+							set_header(response, "Keep-Alive", "timeout=5");
+							set_header(response, "Content-Type", "text/plain");
+							set_header(response, "Content-Length", content_length);
 
-					response_to_string(responseString,response);
-					write(descriptorFichero, responseString, strlen(responseString));
-					write(descriptorFichero, body, strlen(body));
+							response_to_string(responseString,response);
+							write(descriptorFichero, responseString, strlen(responseString));
+							write(descriptorFichero, body, strlen(body));
+						}
+					}
+					//HASTA AQUI#####################################################
+					else
+					{
+						sprintf(full_path,"%s%s", WWW_PATH, path);
+						requested_file_fd = open(full_path, O_RDONLY);			
+
+						if(requested_file_fd != -1) 
+						{
+							fstat(requested_file_fd, &file_stat);
+							sprintf(content_length, "%ld", file_stat.st_size);
+
+							response = create_response("200", "OK");
+							set_header(response, "Server", "web_sstt");
+							set_header(response, "Content-Type", get_file_extension(path));
+							set_header(response, "Connection", "keep-alive");
+							set_header(response, "Keep-Alive", "timeout=5");
+							set_header(response, "Set-Cookie", cookie_value_str);
+							set_header(response, "Content-Length", content_length);
+
+							response_to_string(responseString,response);
+							write(descriptorFichero, responseString, strlen(responseString));
+							sendfile(descriptorFichero, requested_file_fd, &offset, file_stat.st_size);
+
+							free_cookies(cookies);
+							close(requested_file_fd);
+						} 
+						else 
+						{
+							char * body = "<body><h1>404 NOT FOUND</h1></body>";
+							sprintf(content_length,"%ld", strlen(body));
+
+							response = create_response("404", "NOT FOUND");
+							set_header(response, "Server", "web_sstt");
+							set_header(response, "Content-Type", "text/html");
+							set_header(response, "Connection", "keep-alive");
+							set_header(response, "Content-Length", content_length);
+
+							response_to_string(responseString,response);
+							write(descriptorFichero, responseString, strlen(responseString));
+							write(descriptorFichero, body, strlen(body));
+						}
+					}
 				}
+
 			}
+			
 		}
 	}
 	puts("timeout");
