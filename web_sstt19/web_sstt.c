@@ -26,6 +26,9 @@
 #define WWW_PATH "../www"
 #define NUM_EXTENSION 11
 #define EMAIL "manu%40um.es"
+#define COOKIE_MAX_AGE 10
+#define KEEP_ALIVE_TIMEOUT 5
+#define KEEP_ALIVE_MAX 0
 
 
 
@@ -85,7 +88,7 @@ struct http_header {
 
 struct http_request {
 	char * method;
-	char * path;
+	char * url;
 	char * http_version;
 	struct http_header header[NUM_HEADERS];
 	int num_headers;
@@ -146,7 +149,7 @@ struct http_response * create_response(const char * code, const char * string)
 	return response;
 }
 
-void set_header(struct http_response * response, const char * key, const char * value)
+void response_set_header(struct http_response * response, const char * key, const char * value)
 {
 	int found = 0;
 	for(int i = 0; i<response->next_header && !found; i++)
@@ -186,7 +189,7 @@ struct http_request * parse_request(char * buffer)
 	struct http_request * request = malloc(sizeof(struct http_request));
 	char * offset = buffer;
 	request->method = getToken(&offset, ' ');
-	request->path = getToken(&offset, ' ');
+	request->url = getToken(&offset, ' ');
 	request->http_version = getToken(&offset, '\r');
 	offset++; //jump \n
 	
@@ -211,6 +214,24 @@ struct http_request * parse_request(char * buffer)
 	return request;
 }
 
+char * get_request_query_params(struct http_request * req) {
+	char * offset;
+	if(offset = strchr(req->url, '?')) {
+		return strdup(offset+1);
+	}
+	return NULL;
+}
+
+char * get_request_path(struct http_request * req) {
+	char * urldup = strdup(req->url);
+	char * offset;
+	if(offset = strchr(urldup, '?')) {
+		*offset = 0;
+		return strdup(urldup);
+	}
+	return strdup(urldup);
+}
+
 char * get_file_extension(char * file)
 {
 	char * file_extension = strrchr(file, '.')+1;
@@ -220,15 +241,6 @@ char * get_file_extension(char * file)
 			return extensions[i].filetype;
 	}
 	return 0;
-}
-
-void free_cookies(struct lista_cookies * cookies) {
-	if(cookies->sig != NULL) 
-		free_cookies(cookies->sig);
-
-	free(cookies->key);
-	free(cookies->value);
-	free(cookies);
 }
 
 void get_cookies(struct lista_cookies * cookies, const struct http_request * req)
@@ -250,33 +262,89 @@ void get_cookies(struct lista_cookies * cookies, const struct http_request * req
 	}
 }
 
+void free_cookies(struct lista_cookies * cookies) {
+	if(cookies->sig != NULL) 
+		free_cookies(cookies->sig);
+
+	free(cookies->key);
+	free(cookies->value);
+	free(cookies);
+}
+
+void send_response_str(char * state_code, char * state_text, char * body, int descriptorFichero) {
+	char content_length[20];
+	struct http_response * response;
+	char response_str[BUFSIZE] = {0};
+	char keep_alive_value[100] = {0};
+
+	sprintf(keep_alive_value, "timeout=%d, max=%d", KEEP_ALIVE_TIMEOUT, KEEP_ALIVE_MAX);
+	sprintf(content_length,"%ld", strlen(body));
+
+	response = create_response(state_code, state_text);
+	response_set_header(response, "Server", "web_sstt");
+	response_set_header(response, "Content-Type", "text/html");
+	response_set_header(response, "Connection", "keep-alive");
+	response_set_header(response, "Keep-Alive", keep_alive_value);
+	response_set_header(response, "Content-Length", content_length);
+
+	response_to_string(response_str,response);
+	write(descriptorFichero, response_str, strlen(response_str));
+	write(descriptorFichero, body, strlen(body));
+	free(response);
+}
+
+void send_response_file(char * state_code, char * state_text, int req_fd, char * ext, int descriptorFichero, int cookie_counter) {
+	struct http_response * response;
+	char content_length[20];
+	char response_str[BUFSIZE] = {0};
+	char cookie_value_str[100];
+	char keep_alive_value[100] = {0};
+	struct stat file_stat;
+	off_t offset = 0;
+
+	fstat(req_fd, &file_stat);
+	sprintf(content_length, "%ld", file_stat.st_size);
+	sprintf(keep_alive_value, "timeout=%d, max=%d", KEEP_ALIVE_TIMEOUT, KEEP_ALIVE_MAX);
+	sprintf(cookie_value_str, "cookie_counter=%d; Max-Age=%d", cookie_counter, COOKIE_MAX_AGE);
+
+	response = create_response(state_code, state_text);
+	response_set_header(response, "Server", "web_sstt");
+	response_set_header(response, "Content-Type", ext);
+	response_set_header(response, "Connection", "keep-alive");
+	response_set_header(response, "Keep-Alive", keep_alive_value);
+	response_set_header(response, "Set-Cookie", cookie_value_str);
+	response_set_header(response, "Content-Length", content_length);
+
+	response_to_string(response_str,response);
+	write(descriptorFichero, response_str, strlen(response_str));
+	sendfile(descriptorFichero, req_fd, &offset, file_stat.st_size);
+	free(response);
+}
 
 void process_web_request(int descriptorFichero)
 {
 	debug(LOG,"request","Ha llegado una peticion",descriptorFichero);
+	int bytes_readed = -1; 
 
-	int bytes_readed; 
+	//mientras no se cierre la conexion
 	while(bytes_readed != 0) 
 	{
-		char buffer[BUFSIZE] = {0}; 	// rcv buffer
-
+		// rcv buffer
+		char buffer[BUFSIZE] = {0};
 		bytes_readed = read(descriptorFichero, buffer, BUFSIZE);
+
 		if(bytes_readed == -1)
 			debug(LOG,"Socket","Error en la lectura del socket",descriptorFichero);
+
 		else if (bytes_readed > 0) {
 			struct http_request * request;
 			int cookie_counter;
-			struct http_response * response;
-			char responseString[BUFSIZE] = {0};
 			char full_path[200];
-			char content_length[20];
 			int requested_file_fd;
-			struct stat file_stat;
-			off_t offset = 0;
 
 			buffer[bytes_readed] = 0;
 			request = parse_request(buffer);
-
+			
 			struct lista_cookies * cookies = malloc(sizeof(struct lista_cookies));
 			get_cookies(cookies, request);
 			if(cookies->key != NULL)
@@ -286,83 +354,36 @@ void process_web_request(int descriptorFichero)
 			} 
 			else 
 				cookie_counter = 1;
-			
-			char cookie_value_str[100];
-			sprintf(cookie_value_str, "cookie_counter=%d; Max-Age=10", cookie_counter);
 
 			if(cookie_counter >= 10)
 			{
-				char * body = "420 Too Many Requests: Wait two minutes";
-				sprintf(content_length,"%ld", strlen(body));
-
-				response = create_response("420", "Too Many Requests");
-				set_header(response, "Server", "web_sstt");
-				set_header(response, "Content-Type", "text/html");
-				set_header(response, "Connection", "keep-alive");
-				set_header(response, "Content-Length", content_length);
-
-				response_to_string(responseString,response);
-				write(descriptorFichero, responseString, strlen(responseString));
-				write(descriptorFichero, body, strlen(body));
+				send_response_str("420", "too many requests", "<h1>420 Too Many Requests: Wait two minutes</h1>", 
+				descriptorFichero);
 			}
 			else 
 			{
 				if(!strcmp(request->method, "GET"))
 				{
-					//DESDE AQUI#####################################################
-					//extraemos los parametros del path si los hubiera
-					char * path;
-					char * query_params;
-					if(strchr(request->path, '?')) {
-						char * offsetAux = request->path;
-						path = getToken(&offsetAux, '?');
-						query_params = strdup(offsetAux);
-					}
-					else {
-						path = request->path;
-					}
-					
-					//asumiendo que siempre va a llevar una query este path
+					// extraemos el path y los params si los hubiera
+					char * path = get_request_path(request);
+					char * query_params = get_request_query_params(request);
+
 					if(!strcmp(path, "/checkmail")) 
 					{
+						//asumiendo que siempre va a llevar una query este path extremos el keyvalue
 						char * offsetAux = query_params;
 						char * key = getToken(&offsetAux, '=');
 						char * value = strdup(offsetAux);
 
 						if(!strcmp(EMAIL, value)) 
 						{
-							char * body = "EMAIL CORRECTO";
-							sprintf(content_length,"%ld", strlen(body));
-
-							response = create_response("200", "OK");
-							set_header(response, "Server", "web_sstt");
-							set_header(response, "Content-Type", "text/plain");
-							set_header(response, "Connection", "keep-alive");
-							set_header(response, "Keep-Alive", "timeout=5");
-							set_header(response, "Content-Length", content_length);
-
-							response_to_string(responseString,response);
-							write(descriptorFichero, responseString, strlen(responseString));
-							write(descriptorFichero, body, strlen(body));
+							send_response_str("200", "OK", "<h1>EMAIL CORRECTO</h1>", descriptorFichero);
 						}
 						else 
 						{
-							char body[] = "EMAIL INCORRECTO";
-							sprintf(content_length,"%ld", strlen(body));
-
-							response = create_response("200", "OK");
-							set_header(response, "Server", "web_sstt");
-							set_header(response, "Connection", "keep-alive");
-							set_header(response, "Keep-Alive", "timeout=5");
-							set_header(response, "Content-Type", "text/plain");
-							set_header(response, "Content-Length", content_length);
-
-							response_to_string(responseString,response);
-							write(descriptorFichero, responseString, strlen(responseString));
-							write(descriptorFichero, body, strlen(body));
+							send_response_str("200", "OK", "<h1>EMAIL INCORRECTO</h1>", descriptorFichero);
 						}
 					}
-					//HASTA AQUI#####################################################
 					else
 					{
 						sprintf(full_path,"%s%s", WWW_PATH, path);
@@ -370,47 +391,21 @@ void process_web_request(int descriptorFichero)
 
 						if(requested_file_fd != -1) 
 						{
-							fstat(requested_file_fd, &file_stat);
-							sprintf(content_length, "%ld", file_stat.st_size);
-
-							response = create_response("200", "OK");
-							set_header(response, "Server", "web_sstt");
-							set_header(response, "Content-Type", get_file_extension(path));
-							set_header(response, "Connection", "keep-alive");
-							set_header(response, "Keep-Alive", "timeout=5");
-							set_header(response, "Set-Cookie", cookie_value_str);
-							set_header(response, "Content-Length", content_length);
-
-							response_to_string(responseString,response);
-							write(descriptorFichero, responseString, strlen(responseString));
-							sendfile(descriptorFichero, requested_file_fd, &offset, file_stat.st_size);
-
+							send_response_file("200", "OK", requested_file_fd, get_file_extension(full_path),
+							descriptorFichero, cookie_counter);
 							free_cookies(cookies);
 							close(requested_file_fd);
 						} 
 						else 
 						{
-							char * body = "<body><h1>404 NOT FOUND</h1></body>";
-							sprintf(content_length,"%ld", strlen(body));
-
-							response = create_response("404", "NOT FOUND");
-							set_header(response, "Server", "web_sstt");
-							set_header(response, "Content-Type", "text/html");
-							set_header(response, "Connection", "keep-alive");
-							set_header(response, "Content-Length", content_length);
-
-							response_to_string(responseString,response);
-							write(descriptorFichero, responseString, strlen(responseString));
-							write(descriptorFichero, body, strlen(body));
+							send_response_str("404", "NOT FOUND", "<h1>404 NOT FOUND</h1>", descriptorFichero);
 						}
 					}
 				}
-
 			}
-			
 		}
 	}
-	puts("timeout");
+	debug(LOG,"conexión","timeout",descriptorFichero);
 	exit(1);
 }
 
