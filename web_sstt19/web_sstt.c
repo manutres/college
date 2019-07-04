@@ -75,10 +75,10 @@ void debug(int log_message_type, char *message, char *additional_info, int socke
 	if(log_message_type == ERROR || log_message_type == NOENCONTRADO || log_message_type == PROHIBIDO) exit(3);
 }
 
-struct lista_cookies {
+struct cookie_list {
 	char * key;
 	char * value;
-	struct lista_cookies * sig;
+	struct cookie_list * sig;
 };
 
 struct http_header {
@@ -102,16 +102,6 @@ struct http_response {
 	struct http_header header[NUM_HEADERS];
 	int next_header;
 };
-
-char * get_header_value(struct http_request * request, const char * header)
-{
-	for(int i = 0; i<NUM_HEADERS; i++)
-	{
-		if(strcmp(request->header[i].key, header))
-			return request->header[i].value;
-	}
-	return NULL;
-}
 
 /**
  * @brief Given a string the function look up the next delimiter
@@ -137,6 +127,17 @@ char * getToken(char ** src_str, int delim)
 		return str_aux;
 	}
 	return NULL;
+}
+
+char * get_file_extension(char * file)
+{
+	char * file_extension = strrchr(file, '.')+1;
+	for(int i = 0; i<NUM_EXTENSION; i++)
+	{
+		if(!strcmp(extensions[i].ext, file_extension))
+			return extensions[i].filetype;
+	}
+	return 0;
 }
 
 struct http_response * create_response(const char * code, const char * string)
@@ -184,6 +185,16 @@ void response_to_string(char * buffer, const struct http_response * response)
 	buffer[count] = 0;
 }
 
+char * get_header_value(struct http_request * request, const char * header)
+{
+	for(int i = 0; i<NUM_HEADERS; i++)
+	{
+		if(strcmp(request->header[i].key, header))
+			return request->header[i].value;
+	}
+	return NULL;
+}
+
 struct http_request * parse_request(char * buffer)
 {
 	struct http_request * request = malloc(sizeof(struct http_request));
@@ -214,14 +225,6 @@ struct http_request * parse_request(char * buffer)
 	return request;
 }
 
-char * get_request_query_params(struct http_request * req) {
-	char * offset;
-	if(offset = strchr(req->url, '?')) {
-		return strdup(offset+1);
-	}
-	return NULL;
-}
-
 char * get_request_path(struct http_request * req) {
 	char * urldup = strdup(req->url);
 	char * offset;
@@ -232,21 +235,19 @@ char * get_request_path(struct http_request * req) {
 	return strdup(urldup);
 }
 
-char * get_file_extension(char * file)
-{
-	char * file_extension = strrchr(file, '.')+1;
-	for(int i = 0; i<NUM_EXTENSION; i++)
-	{
-		if(!strcmp(extensions[i].ext, file_extension))
-			return extensions[i].filetype;
+char * get_request_query_params(struct http_request * req) {
+	char * offset;
+	if(offset = strchr(req->url, '?')) {
+		return strdup(offset+1);
 	}
-	return 0;
+	return NULL;
 }
 
-void get_cookies(struct lista_cookies * cookies, const struct http_request * req)
+struct cookie_list * get_cookies(const struct http_request * req)
 {
+	struct cookie_list * cookies = malloc(sizeof(struct cookie_list));
+	struct cookie_list * lista_it = cookies;
 	char * offset;
-	struct lista_cookies * lista_it = cookies;
 	lista_it->key = NULL;
 	lista_it->value = NULL;
 	for(int i = 0; i<req->num_headers; i++)
@@ -256,13 +257,14 @@ void get_cookies(struct lista_cookies * cookies, const struct http_request * req
 			offset = req->header[i].value;
 			lista_it->key = getToken(&offset, '=');
 			lista_it->value = strdup(offset);
-			lista_it->sig = malloc(sizeof(struct lista_cookies));
+			lista_it->sig = malloc(sizeof(struct cookie_list));
 			lista_it = lista_it->sig;
 		}
 	}
+	return cookies;
 }
 
-void free_cookies(struct lista_cookies * cookies) {
+void free_cookies(struct cookie_list * cookies) {
 	if(cookies->sig != NULL) 
 		free_cookies(cookies->sig);
 
@@ -344,9 +346,9 @@ void process_web_request(int descriptorFichero)
 
 			buffer[bytes_readed] = 0;
 			request = parse_request(buffer);
+			puts(request->url);
 			
-			struct lista_cookies * cookies = malloc(sizeof(struct lista_cookies));
-			get_cookies(cookies, request);
+			struct cookie_list * cookies = get_cookies(request);
 			if(cookies->key != NULL)
 			{
 				cookie_counter = atoi(cookies->value);
@@ -371,6 +373,7 @@ void process_web_request(int descriptorFichero)
 					if(!strcmp(path, "/checkmail")) 
 					{
 						//asumiendo que siempre va a llevar una query este path extremos el keyvalue
+						//get_value(query_params)
 						char * offsetAux = query_params;
 						char * key = getToken(&offsetAux, '=');
 						char * value = strdup(offsetAux);
@@ -386,11 +389,14 @@ void process_web_request(int descriptorFichero)
 					}
 					else
 					{
+						//build_fullpath()
 						sprintf(full_path,"%s%s", WWW_PATH, path);
 						requested_file_fd = open(full_path, O_RDONLY);			
 
 						if(requested_file_fd != -1) 
 						{
+							//no me convence mucho lo de pasarle la extension y el contador de cookies
+							//versión futura pasandole la lista de cooquies de la request y el full_path?
 							send_response_file("200", "OK", requested_file_fd, get_file_extension(full_path),
 							descriptorFichero, cookie_counter);
 							free_cookies(cookies);
