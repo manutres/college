@@ -45,6 +45,9 @@
  * Constantes, macros y variables globales
  ******************************************************************************/
 
+char * sUser = 0;
+int status = 0;
+static int shc = 0; /* signal handler counter */
 
 static const char* VERSION = "0.18";
 
@@ -447,6 +450,8 @@ void handle_sigchld(int signal) {
 /******************************************************************************
  * Funciones auxiliares
  ******************************************************************************/
+
+
 
 void print_hd_help() {
     printf("Uso: hd [-l NLINES] [-b NBYTES] [-t BSIZE] [FILE1] [FILE2]...\n"
@@ -1904,7 +1909,8 @@ char* get_cmd()
     size_t prompt_size = strlen(pw->pw_name) + strlen(dir_actual) + 4;
     char *prompt;
     prompt = malloc(prompt_size * sizeof(char));
-    sprintf(prompt, "%s@%s> ", pw->pw_name, dir_actual);
+    sprintf(prompt, "%s@%s> ", "alumno", dir_actual);
+    //sprintf(prompt, "%s@%s> ", pw->pw_name, dir_actual);
 
     // Lee la orden tecleada por el usuario
     buf = readline(prompt);
@@ -1966,8 +1972,10 @@ int main(int argc, char** argv)
         pids_procesos[i]= -1;
     }
 
+
     sigemptyset(&signal_child);
     sigaddset(&signal_child, SIGCHLD);
+
 
     //Bloquear la señal SIGINIT
     sigset_t blocked_sig_int;
@@ -1978,6 +1986,7 @@ int main(int argc, char** argv)
         exit(EXIT_FAILURE);
     }
 
+
     //Bloquear la seña SIGQUIT
     sigset_t ignore_sig_int;
     sigemptyset(&ignore_sig_int);
@@ -1986,6 +1995,8 @@ int main(int argc, char** argv)
         perror(" SIGPROCMASK: SIGQUIT");
         exit(EXIT_FAILURE);
     }
+
+
 
     struct sigaction sa;
     memset(&sa, 0, sizeof(sa));
@@ -1996,6 +2007,8 @@ int main(int argc, char** argv)
         perror(0);
         exit(EXIT_FAILURE);
     }
+
+
 
     char* buf;
     struct cmd* cmd;

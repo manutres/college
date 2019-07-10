@@ -12,6 +12,8 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/select.h>
+#include <error.h>
+#include <errno.h>
 
 #include <sys/sendfile.h>
 #include <sys/stat.h>
@@ -27,10 +29,9 @@
 #define NUM_EXTENSION 11
 #define EMAIL "manu%40um.es"
 #define COOKIE_MAX_AGE 10
-#define KEEP_ALIVE_TIMEOUT 5
-#define KEEP_ALIVE_MAX 0
-
-
+#define TIMEOUT 15
+#define REQ_MAX 3
+#define MAX_COOKIES 10
 
 struct {
 	char *ext;
@@ -86,6 +87,11 @@ struct http_header {
 	char * value;
 };
 
+void free_header(struct http_header * header) {
+	free(header->key);
+	free(header->value);
+}
+
 struct http_request {
 	char * method;
 	char * url;
@@ -94,6 +100,15 @@ struct http_request {
 	int num_headers;
 	char * body;
 };
+
+void free_http_request(struct http_request * req) {
+	free(req->method);
+	free(req->url);
+	free(req->http_version);
+	free(req->body);
+	for(int i = 0; i<req->num_headers; i++)
+		free_header(&req->header[i]);
+}
 
 struct http_response {
 	char * http_version;
@@ -198,30 +213,56 @@ char * get_header_value(struct http_request * request, const char * header)
 struct http_request * parse_request(char * buffer)
 {
 	struct http_request * request = malloc(sizeof(struct http_request));
+	request->method = NULL;
+	request->url = NULL;
+	request->http_version = NULL;
+
 	char * offset = buffer;
 	request->method = getToken(&offset, ' ');
 	request->url = getToken(&offset, ' ');
 	request->http_version = getToken(&offset, '\r');
 	offset++; //jump \n
+
+	// Es alguno nulo?
+	if(request->method == NULL || request->url == NULL || request->http_version == NULL)
+		return NULL;
+	// Es GET y solo GET (de momento solo soportamos GET)
+	if(strcmp(request->method, "GET"))
+		return NULL;
+
+	// Contiene la url algun doble punto?
+	char * dot;
+	if((dot = strchr(request->url, '.')))
+		if(*(++dot) == '.')
+			return NULL;
+
+	// // Es HTTP/1.1 y solo HTTP/1.1
+	if(strcmp(request->http_version, "HTTP/1.1"))
+		return NULL;
+	
 	
 	char * token = getToken(&offset, ':'); //get first keyheader
-	int header_cont = 0;
-	while(token != NULL && strlen(token) > 0)
+	if(token != NULL) 
 	{
-		request->header[header_cont].key = token;
-		offset++; //jump space between header key and value
+		int header_cont = 0;
+		while(token != NULL && strlen(token) > 0)
+		{
+			request->header[header_cont].key = token;
+			offset++; //jump space between header key and value
 
-		request->header[header_cont].value = getToken(&offset, '\r');
-		offset++; //jump \n terminator
-		
-		header_cont++;
-		token = getToken(&offset,':'); //get next key header
+			request->header[header_cont].value = getToken(&offset, '\r');
+			offset++; //jump \n terminator
+			
+			header_cont++;
+			token = getToken(&offset,':'); //get next key header
+		}
+		request->num_headers = header_cont;
+		offset += 2; //jump last \r\n pointing to body's first byte
+		int bodyLen = atoi(get_header_value(request, "Content-Length"));
+		if(bodyLen > 0)
+			strncpy(request->body, offset, bodyLen+1); //+1 for copying null terminator 
+		return request;
 	}
-	request->num_headers = header_cont;
-	offset += 2; //jump last \r\n pointing to body's first byte
-	int bodyLen = atoi(get_header_value(request, "Content-Length"));
-	if(bodyLen > 0)
-		strncpy(request->body, offset, bodyLen+1); //+1 for copying null terminator 
 	return request;
 }
 
@@ -279,14 +320,12 @@ void send_response_str(char * state_code, char * state_text, char * body, int de
 	char response_str[BUFSIZE] = {0};
 	char keep_alive_value[100] = {0};
 
-	sprintf(keep_alive_value, "timeout=%d, max=%d", KEEP_ALIVE_TIMEOUT, KEEP_ALIVE_MAX);
 	sprintf(content_length,"%ld", strlen(body));
 
 	response = create_response(state_code, state_text);
 	response_set_header(response, "Server", "web_sstt");
 	response_set_header(response, "Content-Type", "text/html");
 	response_set_header(response, "Connection", "keep-alive");
-	response_set_header(response, "Keep-Alive", keep_alive_value);
 	response_set_header(response, "Content-Length", content_length);
 
 	response_to_string(response_str,response);
@@ -306,14 +345,12 @@ void send_response_file(char * state_code, char * state_text, int req_fd, char *
 
 	fstat(req_fd, &file_stat);
 	sprintf(content_length, "%ld", file_stat.st_size);
-	sprintf(keep_alive_value, "timeout=%d, max=%d", KEEP_ALIVE_TIMEOUT, KEEP_ALIVE_MAX);
 	sprintf(cookie_value_str, "cookie_counter=%d; Max-Age=%d", cookie_counter, COOKIE_MAX_AGE);
 
 	response = create_response(state_code, state_text);
 	response_set_header(response, "Server", "web_sstt");
 	response_set_header(response, "Content-Type", ext);
 	response_set_header(response, "Connection", "keep-alive");
-	response_set_header(response, "Keep-Alive", keep_alive_value);
 	response_set_header(response, "Set-Cookie", cookie_value_str);
 	response_set_header(response, "Content-Length", content_length);
 
@@ -327,91 +364,117 @@ void process_web_request(int descriptorFichero)
 {
 	debug(LOG,"request","Ha llegado una peticion",descriptorFichero);
 	int bytes_readed = -1; 
+	int connection = -1;
+	int num_req = 0;
+	struct http_request * request;
+
+	fd_set rfds;
+	struct timeval tv; 
+	int retval = 1;
+	FD_ZERO(&rfds); 
+	FD_SET(descriptorFichero, &rfds); 
+	tv.tv_sec = TIMEOUT; 
+	tv.tv_usec = 0;
 
 	//mientras no se cierre la conexion
-	while(bytes_readed != 0) 
+	while(connection && (num_req < REQ_MAX)) 
 	{
-		// rcv buffer
-		char buffer[BUFSIZE] = {0};
-		bytes_readed = read(descriptorFichero, buffer, BUFSIZE);
+		tv.tv_sec = TIMEOUT;
+		retval = select(descriptorFichero+1, &rfds, NULL, NULL, &tv);
+		if(retval) 
+		{
+			num_req++;
+			char buffer[BUFSIZE] = {0};
+			bytes_readed = read(descriptorFichero, buffer, BUFSIZE);
 
-		if(bytes_readed == -1)
-			debug(LOG,"Socket","Error en la lectura del socket",descriptorFichero);
+			if(bytes_readed == -1)
+				debug(LOG,"Socket","Error en la lectura del socket",descriptorFichero);
 
-		else if (bytes_readed > 0) {
-			struct http_request * request;
-			int cookie_counter;
-			char full_path[200];
-			int requested_file_fd;
+			else if (bytes_readed > 0) {
+				int cookie_counter;
+				char full_path[200];
+				int requested_file_fd;
 
-			buffer[bytes_readed] = 0;
-			request = parse_request(buffer);
-			puts(request->url);
-			
-			struct cookie_list * cookies = get_cookies(request);
-			if(cookies->key != NULL)
-			{
-				cookie_counter = atoi(cookies->value);
-				cookie_counter++;
-			} 
-			else 
-				cookie_counter = 1;
+				buffer[bytes_readed] = 0;
+				request = parse_request(buffer);
 
-			if(cookie_counter >= 10)
-			{
-				send_response_str("420", "too many requests", "<h1>420 Too Many Requests: Wait two minutes</h1>", 
-				descriptorFichero);
-			}
-			else 
-			{
-				if(!strcmp(request->method, "GET"))
+				if(request != NULL) 
 				{
-					// extraemos el path y los params si los hubiera
-					char * path = get_request_path(request);
-					char * query_params = get_request_query_params(request);
-
-					if(!strcmp(path, "/checkmail")) 
+					struct cookie_list * cookies = get_cookies(request);
+					if(cookies->key != NULL)
 					{
-						//asumiendo que siempre va a llevar una query este path extremos el keyvalue
-						//get_value(query_params)
-						char * offsetAux = query_params;
-						char * key = getToken(&offsetAux, '=');
-						char * value = strdup(offsetAux);
+						cookie_counter = atoi(cookies->value);
+						cookie_counter++;
+					} 
+					else 
+						cookie_counter = 1;
 
-						if(!strcmp(EMAIL, value)) 
-						{
-							send_response_str("200", "OK", "<h1>EMAIL CORRECTO</h1>", descriptorFichero);
-						}
-						else 
-						{
-							send_response_str("200", "OK", "<h1>EMAIL INCORRECTO</h1>", descriptorFichero);
-						}
+					if(cookie_counter >= MAX_COOKIES)
+					{
+						send_response_str("420", "too many requests", "<h1>420 Too Many Requests: Wait two minutes</h1>", 
+						descriptorFichero);
 					}
-					else
+					else 
 					{
-						//build_fullpath()
-						sprintf(full_path,"%s%s", WWW_PATH, path);
-						requested_file_fd = open(full_path, O_RDONLY);			
+						if(!strcmp(request->method, "GET"))
+						{
+							// extraemos el path y los params si los hubiera
+							char * path = get_request_path(request);
+							char * query_params = get_request_query_params(request);
 
-						if(requested_file_fd != -1) 
-						{
-							//no me convence mucho lo de pasarle la extension y el contador de cookies
-							//versión futura pasandole la lista de cooquies de la request y el full_path?
-							send_response_file("200", "OK", requested_file_fd, get_file_extension(full_path),
-							descriptorFichero, cookie_counter);
-							free_cookies(cookies);
-							close(requested_file_fd);
-						} 
-						else 
-						{
-							send_response_str("404", "NOT FOUND", "<h1>404 NOT FOUND</h1>", descriptorFichero);
+							if(!strcmp(path, "/checkmail")) 
+							{
+								//asumiendo que siempre va a llevar una query este path extremos el keyvalue
+								//get_value(query_params)
+								char * offsetAux = query_params;
+								char * key = getToken(&offsetAux, '=');
+								char * value = strdup(offsetAux);
+
+								if(!strcmp(EMAIL, value)) 
+								{
+									send_response_str("200", "OK", "<h1>EMAIL CORRECTO</h1>", descriptorFichero);
+								}
+								else 
+								{
+									send_response_str("200", "OK", "<h1>EMAIL INCORRECTO</h1>", descriptorFichero);
+								}
+							}
+							else
+							{
+								//build_fullpath()
+								sprintf(full_path,"%s%s", WWW_PATH, path);
+								requested_file_fd = open(full_path, O_RDONLY);			
+
+								if(requested_file_fd != -1) 
+								{
+									//no me convence mucho lo de pasarle la extension y el contador de cookies
+									//versión futura pasandole la lista de cooquies de la request y el full_path?
+									send_response_file("200", "OK", requested_file_fd, get_file_extension(full_path),
+									descriptorFichero, cookie_counter);
+									free_cookies(cookies);
+									close(requested_file_fd);
+								} 
+								else 
+								{
+									send_response_str("404", "NOT FOUND", "<h1>404 NOT FOUND</h1>", descriptorFichero);
+								}
+							}
 						}
 					}
 				}
+				else {
+					send_response_str("400", "BAD REQUEST", "<h1>BAD REQUEST</h1>\n", descriptorFichero);
+					connection = close(descriptorFichero);
+					debug(LOG,"conexión","bad request",descriptorFichero);
+				}	
 			}
 		}
+		else {
+			connection = close(descriptorFichero);
+			debug(LOG,"conexión","cerrada",descriptorFichero);
+		}
+		free_http_request(request);
 	}
-	debug(LOG,"conexión","timeout",descriptorFichero);
 	exit(1);
 }
 
