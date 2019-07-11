@@ -5,17 +5,14 @@
  * Departamento de Ingeniería y Tecnología de Computadores
  * Facultad de Informática de la Universidad de Murcia
  *
- * Alumnos: ABBOU AAZAZ, MORAD (G2.2)
- *          MORENO GUILLAMON, MANUEL (G2.X)
+ * Alumnos: MORENO GUILLAMON, MANUEL (G2)
  *
- * Convocatoria: FEBRERO/JUNIO/JULIO
+ * Convocatoria: JULIO
  */
-
 
 /*
  * Ficheros de cabecera
  */
-
 
 #define _POSIX_C_SOURCE 200809L /* IEEE 1003.1-2008 (véase /usr/include/features.h) */
 //#define NDEBUG                /* Traduce asertos y DMACROS a 'no ops' */
@@ -44,10 +41,6 @@
 /******************************************************************************
  * Constantes, macros y variables globales
  ******************************************************************************/
-
-char * sUser = 0;
-int status = 0;
-static int shc = 0; /* signal handler counter */
 
 static const char* VERSION = "0.18";
 
@@ -90,24 +83,12 @@ static int g_dbg_level = 0;
 
 // Número máximo de argumentos de un comando
 #define MAX_ARGS 16
-#define DEFAULT_LINE_HD  3
-#define BSIZE 1024
 #define MAX_PROCS 8
 #define MAX_CMD_BUFF_LENGTH 4096
-
-
-
-// Delimitadores
-static const char WHITESPACE[] = " \t\r\n\v";
-// Caracteres especiales
-static const char SYMBOLS[] = "<|>&;()";
-static sigset_t signal_child;
-
 
 /******************************************************************************
  * Estructuras de datos `cmd`
  ******************************************************************************/
-
 
 // Las estructuras `cmd` se utilizan para almacenar información que servirá a
 // simplesh para ejecutar líneas de órdenes con redirecciones, tuberías, listas
@@ -173,56 +154,307 @@ struct subscmd {
     struct cmd* cmd;
 };
 
+struct cmd * parse_cmd(char * start_of_cmd);
+void free_cmd(struct cmd * cmd);
+struct cmd *null_terminate(struct cmd * cmd);
+void run_cmd(struct cmd * cmd);
+       
 /**
- * COMANDO SRC (similar al "source" o "." de linux)
+ * COMANDO INTERNO cwd (idéntico al pwd de bash)
+ *
+ * FUNCIONALIDAD: Muestra el directorio actual de trabajo
+*/
+
+void _getcwd(char *buf){
+  if (!getcwd(buf, PATH_MAX)) {
+    perror("Error de getcwd()\n");
+    exit(EXIT_FAILURE);
+  }
+}
+
+void run_cwd() {
+    char ruta[PATH_MAX];
+    _getcwd(ruta);
+    printf("cwd: %s\n", ruta);
+}
+
+/**
+ * COMANDO INTERNO exit (idéntico al exit de bash)
+ *
+ * FUNCIONALIDAD: termina el proceso que lo invoca
+*/
+
+void run_exit(struct execcmd * ecmd) {
+    // LIMPIAR LA MEMORIA
+    free(ecmd);
+    exit(EXIT_SUCCESS);
+}
+
+/**
+ * COMANDO INTERNO cd (idéntico al cd de bash)
+ *
+ * FUNCIONALIDAD: cambia el directorio actual a otro dado
+*/
+
+void _chdir(const char *path){
+  if (chdir(path) < 0)
+    perror("Error de chdir()\n");
+}
+
+void _setenv(const char *name, const char *value, int overwrite){
+  if (setenv(name, value, overwrite) < 0)
+    perror("Error de setenv()\n");
+}
+
+char * get_cwd_str(){
+  char * cwd = malloc(sizeof(char)*PATH_MAX);
+  _getcwd(cwd);
+
+  return cwd;
+}
+
+void run_cd(struct execcmd* ecmd){
+
+  char * path = ecmd->argv[1];
+  char * pathActual = get_cwd_str();
+
+
+  // Si la llamada contiene el parámetro "-"
+  if (path != NULL && !strcmp(path, "-")){
+
+    // Si $OLDPWD esta definido:
+    if (getenv("OLDPWD") != NULL)
+      _chdir(getenv("OLDPWD"));
+    else{
+      fprintf(stderr,"run_cd: Variable OLDPWD no definida\n");
+      _setenv("OLDPWD", getenv("HOME"), 1);
+    }
+  // Si la llamada no contiene el parámetro "-"
+  }else{
+
+    if (path != NULL){
+      if(chdir(path) == -1){
+        fprintf(stderr, "run_cd: No existe el directorio '%s'\n",path );
+      }
+    }else {
+      path = getenv("HOME");
+      _chdir(path);
+      _setenv("OLDPWD", path, 1);
+    }
+  }
+
+  //guardamos el path actual
+  if (pathActual){
+    setenv("OLDPWD", pathActual, 1);
+    free(pathActual);
+  }
+
+}
+
+/**
+ * COMANDO INTERNO hd
+ *
+ * FUNCIONALIDAD: muestra las -l [lineas] o -b [bytes] de un fichero dado o lo que reciba
+ * por le entrada estandar usando un buffer de tamamño -t [bytes]
+*/
+
+#define HD_DEFAULT_LINES 3
+#define DEFAULT_BSIZE 1024
+#define HD_MAX_BSIZE 1048576
+#define HD_NO_FLAGS 0
+#define HD_LINES_FLAG 1         
+#define HD_BYTES_FLAG 2  
+
+//DUPLICADO DE LA USADA EN SRC PARA AÑADIRLE FUNCIONALIDAD SIN ROMPER LA DE SRC
+int readline_from_file_hd(char ** actualcmd, int fd) {
+
+    char buffer[MAX_CMD_BUFF_LENGTH] = {0};
+    int i = 0;
+
+    int n = read(fd, &buffer[i], 1);
+    while(n > 0) {
+        if(buffer[i] == '\n') {
+            buffer[i] = 0;
+            *actualcmd = malloc(sizeof(char) * (i+1));
+            memcpy(*actualcmd, buffer, i+1);
+            return i;
+        }
+        else {
+            i++;
+            n = read(fd, &buffer[i], 1);
+        }
+    }
+    if(i > 0) {
+        buffer[i+1] = 0;
+        *actualcmd = malloc(sizeof(char) * (i+2));
+        memcpy(*actualcmd, buffer, i+2);
+        return i;
+    }
+    return 0;
+}
+
+void print_hd_help() {
+    printf("Uso: hd [-l NLINES] [-b NBYTES] [-t BSIZE] [FILE1] [FILE2]...\n"
+                   "\tOpciones:\n"
+                   "\t-l NLINES Numero maximo de lineas a mostrar.\n"
+                   "\t-b NBYTES Numero maximo de bytes a mostrar.\n"
+                   "\t-t BSIZE Tamano en bytes de los bloques leidos de [FILEn] o stdin.\n"
+                   "\t-h help\n");
+}
+
+void hd_lines(int bsize, int nlines, int fd) {
+    int contlines = 0;
+    char * line;
+    int n;
+    while((n = readline_from_file_hd(&line, fd)) > 0 && contlines < nlines){
+        write(STDOUT_FILENO, line, n);
+        write(STDOUT_FILENO, "\n", 1);
+        contlines++;
+    }
+}
+
+void hd_bytes(int bsize, int nbytes, int fd) {
+    int bytes_readed = 0;
+    int writed = 0;
+    char * line;
+    int n;
+    while((n = readline_from_file_hd(&line, fd)) > 0 && bytes_readed < nbytes) {
+
+        bytes_readed += n;
+        if(bytes_readed < nbytes) {
+            write(STDOUT_FILENO, line, n);
+            write(STDOUT_FILENO, "\n", 1);
+            writed += n;
+        } 
+        else {
+            write(STDOUT_FILENO, line, nbytes-writed);
+        }
+    }
+}
+
+void hd(int bsize, int flag, int arg, int fd) {
+    switch (flag)
+    {
+    case HD_LINES_FLAG:
+        hd_lines(bsize, arg, fd);
+        break;
+    case HD_BYTES_FLAG:
+        hd_bytes(bsize, arg, fd);
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void run_hd(struct execcmd * ecmd) {
+    int flag = HD_NO_FLAGS;          
+    int tvalue = DEFAULT_BSIZE;          
+    int lb_value = HD_DEFAULT_LINES;
+    optind = 1;
+    int opt;
+    while ((opt = getopt(ecmd->argc, ecmd->argv, "l:b:t:h")) != -1) {
+        
+        switch (opt) {
+            case 'l':
+                lb_value = atoi(optarg);
+                //printf("lb_value: %d\n", lb_value);
+                flag |= HD_LINES_FLAG;
+                //printf("flag: %d\n", flag);
+                break;
+            case 'b':
+                lb_value = atoi(optarg);
+                flag |= HD_BYTES_FLAG;
+                break;
+            case 't':
+                tvalue = atoi(optarg);
+                break;
+            case 'h':
+                print_hd_help();
+                break;
+            case '?':
+                if(optopt == 'b' || optopt == 'l' || optopt == 't') {
+                    fprintf(stderr, "Option '%c' requies an argument.\n", optopt);
+                    return;
+                }
+                break;
+            default:
+                fprintf(stderr, "Usage: %s [-f] [-n NUM]\n", ecmd->argv[0]);
+                return;
+                break;
+        }
+    }
+
+    if(flag == HD_NO_FLAGS)
+        flag = HD_LINES_FLAG;
+
+    if( flag == (HD_BYTES_FLAG | HD_LINES_FLAG) ) {
+        fprintf(stderr, "hd: Opciones incompatibles\n");
+        return;
+    }
+
+    if ( tvalue <= 0 || tvalue >= HD_MAX_BSIZE) {
+        printf("hd: Opción no válida\n");
+        return;
+    }
+    // si hay argumentos pertenecientes a ficheros
+    if(optind == ecmd->argc) {
+        hd(tvalue, flag, lb_value, STDIN_FILENO);
+    } else {
+        
+        for (int i = optind; i < ecmd->argc; ++i) {
+            int fd = open(ecmd->argv[i], O_RDONLY);
+            if (fd < 0)
+                printf("hd: No se encontró el archivo '%s'\n", ecmd->argv[i]);
+            else{
+                hd(tvalue, flag, lb_value, fd);
+                close(fd);
+            }
+        }
+    }
+}
+
+
+/**
+ * COMANDO INTERNO src (similar al "source" o "." de linux)
  *
  * FUNCIONALIDAD: Ejecuta los comandos que se encuentran dentro del fichero que se le pasa como parametro
  * o se redirecciona desde la salida estandard de el anterior comando mediante tuberias.
 */
 
-struct cmd * parse_cmd(char * start_of_cmd);
-void free_cmd(struct cmd * cmd);
-struct cmd *null_terminate(struct cmd * cmd);
-void run_cmd(struct cmd * cmd);
-
-char * readline_from_file(int fd) {
+int readline_from_file(char ** actualcmd, int fd) {
 
     char buffer[MAX_CMD_BUFF_LENGTH] = {0};
-    char * actualcmd;
-    int filepos = lseek(fd, 0, SEEK_CUR);
-    int cmdreadedtam = 0;
+    int i = 0;
 
-    int n = read(fd, buffer, MAX_CMD_BUFF_LENGTH);
-    if(n > 0) {
-        for(int i = 0; i<n; i++) {
-            if(buffer[i] == '\n') {
-                cmdreadedtam = (&buffer[i] - buffer); //sin +1 para obviar el '\n'
-                filepos = filepos + i + 1;
-                actualcmd = malloc(sizeof(char) * cmdreadedtam+1);
-                memcpy(actualcmd, buffer, cmdreadedtam);
-                actualcmd[cmdreadedtam] = 0;
-                lseek(fd,filepos, SEEK_SET);
-                return actualcmd;
-            }
-            if(i == n-1){
-                cmdreadedtam = (&buffer[n] - buffer);
-                actualcmd = malloc(sizeof(char) * cmdreadedtam+1);
-                memcpy(actualcmd, buffer, cmdreadedtam);
-                actualcmd[cmdreadedtam] = 0;
-                return actualcmd;
-            }
+    int n = read(fd, &buffer[i], 1);
+    while(n > 0) {
+        if(buffer[i] == '\n') {
+            buffer[i] = 0;
+            *actualcmd = malloc(sizeof(char) * (i+1));
+            memcpy(*actualcmd, buffer, i+1);
+            return i;
         }
-    } else {
-        return NULL;
+        else {
+            i++;
+            n = read(fd, &buffer[i], 1);
+        }
     }
-    return NULL;
+    if(i > 0) {
+        buffer[i+1] = 0;
+        *actualcmd = malloc(sizeof(char) * (i+2));
+        memcpy(*actualcmd, buffer, i+2);
+        return i;
+    }
+    return 0;
 }
 
 void src_from_file(int fd, char commentchar) {
     char  * linea = NULL;
     struct cmd * cmd = NULL;
+    int bytesreaded;
 
-    while((linea = readline_from_file(fd))) {
+    while((bytesreaded = readline_from_file( &linea , fd )) > 0) {
         if(linea[0] != commentchar) {
             cmd = parse_cmd(linea);
             null_terminate(cmd);
@@ -237,84 +469,88 @@ void src_from_file(int fd, char commentchar) {
     }
 }
 
-
-/**
- * Funciones SRC
- */
-
 void print_src_help()
 {
-    printf("USO: src [-d DELIM] [FILE 1] [FILE 2]\n");
+    printf("Uso: src [-d DELIM] [FILE 1] [FILE 2]\n");
     printf("\tOptions:\n");
     printf("\t-d DELIM: initial commentary character\n");
     printf("\t-h: show command functioning\n");
 }
 
 
-void parse_src_args(int argc, char * argv[])
+void run_src(struct execcmd * ecmd)
 {
-    optind = 0;
+    optind = 1;
     int c;
-    while((c = getopt(argc, argv, "hd:")) != -1) {
+    char * dvalue = "\%";
+    while((c = getopt(ecmd->argc, ecmd->argv, "hd:")) != -1) {
         switch(c) {
             case 'h':
                 print_src_help();
                 return;
             case 'd':
-                if(optind == argc) {
-                    src_from_file(STDIN_FILENO, optarg[0]);
+                if(optarg[1] != 0) {
+                    fprintf(stderr, "src: Opcion no válida.\n");
+                    return;
                 } else {
-                    for(int i = optind; i<argc; i++) {
-                        int fd = open(argv[i], O_RDONLY);
-                        src_from_file(fd, optarg[0]);
-                        close(fd);
-                    }
+                    dvalue = optarg;
                 }
-                return;
+                break;
             case '?':
                 if(optopt == 'd') {
                     fprintf(stderr, "Option '%c' requies an argument.\n", optopt);
+                    return;
                 }
-                return;
+                break;
             default:
-                fprintf(stderr, "Invalid option.\n");
+                fprintf(stderr, "src: Invalid option.\n");
                 return;
+                break;
         }
     }
-
-    //si no hubieran opciones solo nos interesan los ficheros
-    if(optind == argc) {
-        src_from_file(STDIN_FILENO, '%');
+    //si no tiene ningun fichero leemos de la entrada standard
+    if(optind == ecmd->argc) {
+        src_from_file(STDIN_FILENO, dvalue[0]);
     } else {
-        for(int i = optind; i<argc; i++) {
-            int fd = open(argv[i], O_RDONLY);
-            src_from_file(fd, '%');
-            close(fd);
+        for(int i = optind; i<ecmd->argc; i++) {
+            int fd = open(ecmd->argv[i], O_RDONLY);
+            if(fd < 0) {
+                fprintf(stderr, "src: No se encontró el archivo '%s'\n", ecmd->argv[i]);
+            }
+            else {
+                src_from_file(fd, dvalue[0]);
+                close(fd);
+            }
         }
     }
 }
 
 
-
-
-
 /******************************************************************************
- * FLAGS para HD
+ * SEÑALES Y PROCESOS EN SEGUNDO PLANO
  ******************************************************************************/
 
-#define HD_NO_FLAGS 0           // $ hd <fichero>
-#define HD_LINES_FLAG 1         // $ hd -l lineas <fichero>
-#define HD_BYTES_FLAG 2         // $ hd -b bytes <fichero>
-#define HD_TAM_FLAG 3           // $ hd -t bytes <fichero>
-#define HD_LINES_TAM_FLAG 4     // $ hd -l linea -t bytesSize
-#define HD_BYTES_TAM_FLAG 5     // $ hd -b bytes -t bytesSize
+int backpids[MAX_PROCS] = {-1};
+int backcounter = 0;
+int status = 0; // termination child status
+static sigset_t signal_child;
 
-/******************************************************************************
- * FUNCIONES  PARA LAS SEÑALES
- ******************************************************************************/
+/**
+ * Esta función se utiliza para bloquear las señal signal_child
+ */
+void block_SIG_CHLD() {
+    if ( sigprocmask ( SIG_BLOCK , &signal_child , NULL ) == -1) {
+        perror ( " sigprocmask " ) ;
+        exit ( EXIT_FAILURE ) ;
+    }
+}
 
-//Nuestro array de pids de tamaña maximo MAX_PROCS == 8 para el caso de args -p
-int pids_procesos[MAX_PROCS];
+void release_SIG_CHLD() {
+    if ( sigprocmask ( SIG_UNBLOCK , &signal_child , NULL ) == -1) {
+        perror ( " sigprocmask " ) ;
+        exit ( EXIT_FAILURE ) ;
+    }
+}
 
 //Funcion auxiliar para darle la vuelva al a una cadena.
 /**
@@ -334,7 +570,7 @@ void cadenaInversa(char *begin, char *end)
  * @param value El Entero que se quiere transformar
  * @param str El buffer en el que se inserta el entero
  */
-void integerToString(int value, char *str)
+void itoa(int value, char *str)
 {
     char* wstr=str;
     int sign;
@@ -361,11 +597,12 @@ int is_back_process(int pid){
     if (pid < 0) return 1;
     int i = 0 ;
     while(i < MAX_PROCS){
-        if(pid == pids_procesos[i]) return 0;
+        if(pid == backpids[i]) return 0;
         i++;
     }
     return 1;
 }
+
 
 /**
  * Esta funcion sirve para calcular el numero de cifras de un valor Integer.
@@ -381,16 +618,6 @@ int longitud_numero(int numero) {
     return cifras < 1 ? 1 : cifras;
 }
 
-/**
- * Función que se utiliza para escribir un tamaño de bytes en la salida estandar leyendo desde un fichero o entrada estandar
- * @param fd Descriptor de fichero del que se quiere hacer la lectura
- * @param buffer Puntero a una cadena de caracteres donde se almacenaran los bytes leidos del Descriptor de fichero
- * @param bytes_size Tamano en bytes del chunk y escribir
- */
-void print_bytes(int fd, char* buffer, int bytes_size) ;
-
-
-int longitud_numero(int numero);
 
 //Funcion auxiliar para imprimir el PID que nos pasan como parametro.
 /**
@@ -404,41 +631,23 @@ void print_processid(int pid){
     write(STDOUT_FILENO, &barra1, 1);
 
     char pid_str[longitud];
-    integerToString(pid, pid_str);
-    write(STDOUT_FILENO, pid_str,longitud);         //TODO: Aqui veo el fallo
+    itoa(pid, pid_str);
+    write(STDOUT_FILENO, pid_str,longitud);
 
     char * barra2 = "]\n";
     write(STDOUT_FILENO, barra2, 2);
 }
 
-/**
- * Esta función se utiliza para bloquear las señal signal_child
- */
-void block_SIG_CHLD() {
-    // printf("> bloqueamos\n");
-    if ( sigprocmask ( SIG_BLOCK , &signal_child , NULL ) == -1) {
-        perror ( " sigprocmask " ) ;
-        exit ( EXIT_FAILURE ) ;
-    }
-}
-
-void release_SIG_CHLD() {
-    // printf("> DESbloqueamos\n");
-    if ( sigprocmask ( SIG_UNBLOCK , &signal_child , NULL ) == -1) {
-        perror ( " sigprocmask " ) ;
-        exit ( EXIT_FAILURE ) ;
-    }
-}
-
-
-//Manejador de la señal SIGCHLD.
 void handle_sigchld(int signal) {
     int saved_errno = errno;
     int pid;
-    while ((pid = waitpid((pid_t)(-1), 0, WNOHANG)) > 0) {
-        for(int i = 0; i < MAX_PROCS ;i++){
-            if(pid == pids_procesos[i]){
-                pids_procesos[i] = -1;
+    // -1: for arbitrary child (not waiting any concrete child)
+    // 0: 
+    // WNOHANG: for not blocking parent proccess
+    while ((pid = waitpid((pid_t)(-1), &status, WNOHANG)) > 0) {
+        for(int i = 0; i < MAX_PROCS; i++){
+            if(pid == backpids[i]){
+                backpids[i] = -1;
                 break;
             }
         }
@@ -447,346 +656,72 @@ void handle_sigchld(int signal) {
     errno = saved_errno;
 }
 
-/******************************************************************************
- * Funciones auxiliares
- ******************************************************************************/
+/**
+ * COMANDO INTERNO bjobs (similar al "source" o "." de linux)
+ *
+ * FUNCIONALIDAD: Ejecuta los comandos que se encuentran dentro del fichero que se le pasa como parametro
+ * o se redirecciona desde la salida estandard de el anterior comando mediante tuberias.
+*/
 
 
-
-void print_hd_help() {
-    printf("Uso: hd [-l NLINES] [-b NBYTES] [-t BSIZE] [FILE1] [FILE2]...\n"
+void print_bjobs_help() {
+    printf("Uso: bjobs [-s] [-c] [-h]\n"
                    "\tOpciones:\n"
-                   "\t-l NLINES Numero maximo de lineas a mostrar.\n"
-                   "\t-b NBYTES Numero maximo de bytes a mostrar.\n"
-                   "\t-t BSIZE Tamano en bytes de los bloques leidos de [FILEn] o stdin.\n"
+                   "\t-s Suspende todos los procesos en segundo plano.\n"
+                   "\t-b Reanuda todos los procesos en segundo plano.\n"
                    "\t-h help\n");
 }
 
-void print_bjobs_help() {
-    //TODO:
-}
-
-
-/**
- * Funcion para el comando HD. ( $ hd -l N fichero )
- * Esta función se utiliza para leer un fichero e imprimir N líneas que se pidan
- * @param fd Despcriptor del fichero del que se va a leer
- * @param buffer  Buffer donde se almacenan los bytes que se van a leer
- * @param numLineas  Numero de lineas que se desean imprimir
- */
-void read_and_print_lines(int fd, char* buffer, int numLineas) {
-    ssize_t n = read(fd, buffer, BSIZE);                                                   // Leemos BSIZE bytes del fichero
-    int pos_orign = 0;                                                                     // Tanto pos_origen como pos_actual
-    int pos_actual = 0;                                                                    // se utilizan para el tamaño y situar las posiciones de escritura
-    int num_saltos_linea = 0;                                                              // Contador de numero de saltos de linea
-
-    for (int contador = 0; contador < n && num_saltos_linea < numLineas; ++contador) {     // Mientras que el contador sea menor que los bytes leidos y el
-        if (buffer[contador] == '\n') {                                                    // Si se encuentra un \n
-            pos_actual = contador + 1;                                                     //   Se sitúa la posicion actual en la pos. siguiente a \n
-            write(STDOUT_FILENO, buffer + pos_orign, pos_actual - pos_orign);              //   Se escribe con tamano = pos_actual - pos origen
-            pos_orign = contador + 1;                                                      //   Se sitúa la pos_orign en la posición siguiente al salto de linea
-            num_saltos_linea++;                                                            //   Incrementamos el numero de saltos de linea
-        }
-    }
-
-}
-
-/**
- * Función que se utiliza para escribir un tamaño de bytes en la salida estandar leyendo desde un fichero o entrada estandar
- * @param fd Descriptor de fichero del que se quiere hacer la lectura
- * @param buffer Puntero a una cadena de caracteres donde se almacenaran los bytes leidos del Descriptor de fichero
- * @param bytes_size Tamano en bytes del chunk y escribir
- */
-void print_bytes(int fd, char* buffer, int bytes_size) {
-    ssize_t bytes_escritos;                                             // Variable para los bytes que se vayan a escribir en la salida estandar
-    ssize_t n = 0;
-    int bytes_leidos = 0;
-    do {
-        n = read(fd, buffer + bytes_leidos, BSIZE);                     // Leemos los bytes
-        bytes_leidos += n;                                              // Incrementamos el numero de bytes leidos
-    } while (n > 0 && bytes_leidos < bytes_size);                       // mientras no hayamos alcanzado el numero total de bytes a imprimir o no haya nada mas que leer
-    int total_escrito = 0;                                              // Variable para el numero total de bytes escritos en la salida standar
-    if (bytes_size <= bytes_leidos) {                                   // Si los el tamanno de bytes que queremos escribir es menor al tamano leido
-        bytes_escritos = write(STDOUT_FILENO, buffer, bytes_size);      //  Escribimos el tamano de bytes
-        total_escrito += bytes_escritos;                                //  Incrementamos el tamano total escrito
-        while (bytes_escritos < bytes_size) {                           //   Comprobamos si se han escrito todos los bytes y aseguramos
-            bytes_escritos = write(STDOUT_FILENO, buffer + total_escrito, bytes_size - total_escrito);
-            total_escrito += bytes_escritos;
-        }
-    } else if (bytes_size > bytes_leidos) {                             // Sino
-        int leidos = bytes_leidos;                                      //
-        bytes_escritos = write(STDOUT_FILENO, buffer, leidos);          // Escribimos los bytes en la entrada estandar
-        total_escrito += bytes_escritos;                                // incrementamos el numero de bytes total escritos
-        while(total_escrito < leidos) {                                 // Comprobamos si los bytes escritos iguales que los bytes leidos
-            bytes_escritos = write(STDOUT_FILENO, buffer + total_escrito, leidos - total_escrito);
-            total_escrito += bytes_escritos;
-        }
-    }
-}
-
-/**
- * Esta funcion para el comando HD ( $ hd -t size )
- * Se trata de una funcion que lee de un fichero o una entrada estandar con un tamaño determinado de bytes
- * y los imprime en la salida estandar
- * @param fd Descritpor del fichero del que se van a leer los bytes
- * @param buffer Buffer donde se almacenaran los bytes leidos
- * @param size Tamano en bytes del chunk que se tiene que leer de un fichero
- */
-void read_and_print_tam(int fd, char * buffer, int size) {
-    ssize_t n = read(fd, buffer, size);
-    int total = 0;
-    do {
-        ssize_t w = write(STDOUT_FILENO, buffer, 1);
-        if (w != n) {
-            int total = w;
-            do {
-                w = write(STDOUT_FILENO, total + buffer, n - total);
-                total += w;
-            } while(total < size);
-        }
-        total += n;
-        n = read(fd, buffer, BSIZE);
-    } while (total < size && n > 0);
-}
-
-/**
- * Esta funcion es para el comando HD. ( $ hd -l lines -t size)
- * Esta función lo que hace es leer un fichero o entrada estandar con un tamanño de chunk establecido e imprimir tantas lineas
- * como le hayamos indicado.
- * @param fd Descriptor de fichero del que se quieren leer los bytes
- * @param buffer Buffer donde se almacenaran los bytes leídos
- * @param lines Numero de lineas que se quiere imprimir
- * @param size  Establece el tamano de chunk en bytes que se utiliza para leer.
- */
-void rd_tam_print_lines(int fd, char * buffer,  int lines, int size) { // TODO: Aqui falla algo
-    ssize_t bytes_leidos = 0;                                                     //
-    int ultima_pos_origen = 0;
-    int num_saltos_lineas = 0;
-    int tam_restante = 0;
-
-    do {                                                               // Mientras los bytes leidos sea menor que cero y el num de saltos de lineas < num de linesas
-        bytes_leidos = read(fd, buffer, (size_t) size);                                                // Leemos los bytes
-        int contador = 0;                                                                              // Contador para recorrer el buffer
-        ultima_pos_origen = 0;                                                                         //
-        while (contador < bytes_leidos && num_saltos_lineas < lines) {                                 // Mientras que el numero de saltos de linea es menor que el numero de lineas establecidas
-            if (buffer[contador] == '\n') {                                                            //   Si encontramos un \n
-                write(STDOUT_FILENO, buffer + ultima_pos_origen, contador - ultima_pos_origen + 1);    //       Escribrimos desde la ulitma posición origen
-                ultima_pos_origen = contador + 1;                                                      //
-                num_saltos_lineas++;                                                                   //       actualizamos la ultima posicion origne
-            }                                                                                          //
-            tam_restante = contador - ultima_pos_origen + 1;                                           //       El tamaño restante es igual a la posicion actual - la posición orign
-            contador++;
-        }
-
-        if(tam_restante > 0) {                                                                          // Si aun quedan bytes por escribir
-            write(STDOUT_FILENO, buffer + ultima_pos_origen, tam_restante);                             // Lo escribimos
-            tam_restante = 0;
-        }
-    } while(bytes_leidos > 0 && num_saltos_lineas < lines);
-}
-
-/**
- * Funcion para hd ( $ hd -t bytes_to_read -b bytes_to_write)
- * Esta función sirve para leer un un tamaño de bytes de un fichero y luego
- * imprimir numero de bytes.
- * @param fd    Descriptor de fichero del que se van a leer los bytes
- * @param buffer  Buffer donde se almacenan los bytes leidos
- * @param bytes_to_write El numero de bytes que tendremos que imprimir en la entrada estnadar
- * @param bytes_to_read El numero de bytes que tenemos que leer del fichero
- */
-void rd_tam_print_bytes(int fd, char * buffer, int bytes_to_write, int bytes_to_read) {
-    buffer = malloc(bytes_to_read * sizeof(char));
-    memset(buffer, 0,  bytes_to_read);
-    ssize_t w;
-    ssize_t bytes_leidos = 0;
-    bytes_leidos = read(fd, buffer, bytes_to_read);                         // Numero de bytes que tenemos que leer
-    ssize_t total_escrito = 0;                                              // Numero de bytes totales impresos
-    while(bytes_leidos > 0 && total_escrito < bytes_to_write) {             // Mientras queden bytes por imprimir
-        int escritura_parcial = 0;
-        w = write(STDOUT_FILENO, buffer, bytes_leidos);                     // Escribimos y comprobamos que se hayan escrito
-        total_escrito += w;
-        escritura_parcial = w;
-        while(escritura_parcial < bytes_leidos) {
-            w = write(STDOUT_FILENO, buffer + escritura_parcial, bytes_leidos - escritura_parcial);
-            escritura_parcial += w;
-        }
-        bytes_leidos = read(fd, buffer, bytes_to_read);                     // Leemos
-    }
-}
-
-/**
- * Funcion para el comando hd que se encarga utilizar la función adecuada según
- * los flags que se han utilzado.
- * @param fd
- * @param valor1
- * @param tam
- * @param flag
- */
-void process_hd_from_file(int fd, int valor1, int tam, int flag) {
-    char * buffer = malloc(BSIZE * sizeof(char));
-    ssize_t n;
-    switch (flag) {
-        case HD_NO_FLAGS:   // No hay flags
-            read_and_print_lines(fd, buffer, DEFAULT_LINE_HD);
-            break;
-        case HD_LINES_FLAG: // -l
-            read_and_print_lines(fd, buffer, valor1);
-            break;
-        case HD_BYTES_FLAG: // -b
-            print_bytes(fd, buffer, valor1);
-            break;
-        case HD_TAM_FLAG:   // -t
-            read_and_print_tam(fd, buffer, tam);
-            break;
-        case HD_LINES_TAM_FLAG:     // -l -t
-            rd_tam_print_lines(fd, buffer, valor1, tam);
-            break;
-        case HD_BYTES_TAM_FLAG:     // -b -t
-            rd_tam_print_bytes(fd, buffer, valor1, tam);
-            break;
-    }
-    free(buffer);
-}
-
-/**
- * Para leer de la entrada estandar para el comando hd e imprimir las lineas establecidas
- * @param buffer
- * @param lines_read
- */
-void  read_lines_from_term(char * buffer, int lines_read) {
-    ssize_t n;
-    int number_of_reads = 0;
-    do {
-        n = read(STDIN_FILENO, buffer, BSIZE);
-        int pos_orign = 0;
-        int pos_destino = 0;
-        int num_enter = 0;
-        for (int i = 0; i < n && num_enter < lines_read; ++i) {
-            if (buffer[i] == '\n') {
-                pos_destino = i + 1;
-                write(STDOUT_FILENO, buffer + pos_orign, pos_destino - pos_orign);
-                pos_orign = i + 1;
-                num_enter++;
-            }
-        }
-        number_of_reads++;
-    } while(n != 0 && number_of_reads < lines_read);
-}
-/**
- * Funcion que se usa para procesar el comando hd cuando se lee desde la entrada estandar
- * @param valor1
- * @param tam
- * @param flag
- */
-void process_hd_from_terminal(int valor1, int tam, int flag) {
-    char * buffer = malloc(BSIZE * sizeof(char));
-    memset(buffer, 0, BSIZE);
-    switch (flag) {
-        case HD_NO_FLAGS:
-            read_lines_from_term(buffer, DEFAULT_LINE_HD);
-            break;
-        case HD_LINES_FLAG:
-            read_lines_from_term(buffer, valor1);
-            break;
-        case HD_BYTES_FLAG:
-            print_bytes(STDIN_FILENO, buffer, valor1);
-            break;
-        case HD_TAM_FLAG:
-            read_and_print_tam(STDIN_FILENO, buffer, tam);
-            break;
-        case HD_LINES_TAM_FLAG:
-            rd_tam_print_lines(STDIN_FILENO, buffer, valor1, tam);
-            break;
-        case HD_BYTES_TAM_FLAG:
-            rd_tam_print_bytes(STDIN_FILENO, buffer, valor1, tam);
-            break;
-    }
-    free(buffer);
-}
-
-/**
- * Funcion del comando HD para parsear los flags.
- * @param argc
- * @param argv
- */
-void parse_hd_args(int argc, char *argv[]) {
-    int opt, flag;          // La variable flag la utilizaremos para clasificar el tipo de comando y flags que existen y así poder
-    int arg_1 = 0;          // procesar la función correspondiente
-    int arg_t = 0;
-    flag = HD_NO_FLAGS;
+void run_bjobs(struct execcmd * ecmd) {
+    int opt;
     optind = 1;
-    int hayficheros = 0;
-    while ((opt = getopt(argc, argv, "l:b:t:h")) != -1) {
+    int hay_args = 0;
+    while ((opt = getopt(ecmd->argc, ecmd->argv, "hsc")) != -1) {
         switch (opt) {
-            case 'l':
-                if (flag == HD_NO_FLAGS) {
-                    flag = HD_LINES_FLAG;
-                    arg_1 = atoi(optarg);
-                } else if (flag == HD_TAM_FLAG) {
-                    flag = HD_LINES_TAM_FLAG;
-                    arg_1 = atoi(optarg);
+            case 's':
+                if (hay_args > 0) {
+                    fprintf(stderr, "bjobs: opciones no compatibles.\n");
                 } else {
-                    printf("hd: Opciones incompatibles.\n");
-                    return;
+                    for (int i = 0; i < MAX_PROCS; ++i) {
+                        if (is_back_process(backpids[i]) == 0) {
+                            kill(backpids[i], SIGSTOP);
+                        }
+                    }
+                    hay_args++;
                 }
                 break;
-            case 'b':
-                if (flag == HD_NO_FLAGS) {
-                    flag = HD_BYTES_FLAG;
-                    arg_1 = atoi(optarg);
-                } else if (flag == HD_TAM_FLAG) {
-                    flag = HD_BYTES_TAM_FLAG;
-                    arg_1 = atoi(optarg);
+            case 'c':
+                if (hay_args > 0) {
+                    fprintf(stderr, "bjobs: opciones no compatibles.\n");
                 } else {
-                    printf("hd: Opciones incompatibles.\n");
-                    return;
-                }
-                break;
-            case 't':
-                if (flag == HD_NO_FLAGS) {
-                    arg_t = atoi(optarg);
-                    flag = HD_TAM_FLAG;
-                } else if (flag == HD_LINES_FLAG) {
-                    flag = HD_LINES_TAM_FLAG;
-                    arg_t = atoi(optarg);
-                } else if (flag == HD_BYTES_FLAG) {
-                    flag = HD_BYTES_TAM_FLAG;
-                    arg_t = atoi(optarg);
-                } else {
-                    printf("hd: Opciones incompatibles.\n");
-                    return;
+                    for (int i = 0; i < MAX_PROCS; ++i) {
+                        if (is_back_process(backpids[i]) == 0) {
+                            kill(backpids[i], SIGCONT);
+                        }
+                    }
+                    hay_args++;
                 }
                 break;
             case 'h':
-                print_hd_help();
+                print_bjobs_help();
                 return;
                 break;
             default:
-                fprintf(stderr, "Usage: %s [-f] [-n NUM]\n", argv[0]);
+                fprintf(stderr, "Usage: %s [-f] [-n NUM]\n", ecmd->argv[0]);
                 break;
         }
     }
-
-    if ((flag == HD_TAM_FLAG || flag == HD_LINES_TAM_FLAG || flag == HD_BYTES_TAM_FLAG) && arg_1 <= 0) {
-        printf("hd: Opción no válida.\n");
-        return;
-    }
-
-    hayficheros = argc - optind;
-    if (hayficheros > 0) {
-        for (int i = optind; i < argc; ++i) {
-            int fd = open(argv[i], O_RDONLY);
-            if (fd > 0)
-                process_hd_from_file(fd, arg_1, arg_t, flag);
-            else
-                printf("hd: No se encontró el archivo '%s'\n", argv[i]);
-            close(fd);
+    if (hay_args == 0) {
+        for (int i = 0; i < MAX_PROCS; ++i) {               
+            if(backpids[i] != -1)
+                printf("[%d]\n",backpids[i]);
         }
-    } else {
-        process_hd_from_terminal(arg_1, arg_t, flag);
     }
 }
 
+/**
+ * Funciones auxiliares
+ */
 
 // Imprime el mensaje
 void info(const char *fmt, ...)
@@ -834,118 +769,6 @@ int fork_or_panic(const char* s)
     if(pid == -1)
         panic("%s failed: errno %d (%s)", s, errno, strerror(errno));
     return pid;
-}
-
-/**
- *
- * @param argc
- * @param argv
- */
-void run_bjobs(int argc, char* argv[]) {
-    int opt;
-    optind = 1;
-    int hay_args = 0;
-    while ((opt = getopt(argc, argv, "sc")) != -1) {
-        switch (opt) {
-            case 's':
-                if (hay_args > 0) {
-                    fprintf(stderr, "bjobs: opciones no compatibles.\n");
-                } else {
-                    for (int i = 0; i < MAX_PROCS; ++i) {
-                        if (is_back_process(pids_procesos[i]) == 0) {
-                            kill(pids_procesos[i], SIGSTOP);
-                        }
-                    }
-                    hay_args++;
-                }
-                break;
-            case 'c':
-                if (hay_args > 0) {
-                    fprintf(stderr, "bjobs: opciones no compatibles.\n");
-                } else {
-                    for (int i = 0; i < MAX_PROCS; ++i) {
-                        if (is_back_process(pids_procesos[i]) == 0) {
-                            kill(pids_procesos[i], SIGCONT);
-                        }
-                    }
-                    hay_args++;
-                }
-                break;
-            case 'h':
-                print_bjobs_help();
-                return;
-                break;
-            default:
-                fprintf(stderr, "Usage: %s [-f] [-n NUM]\n", argv[0]);
-                break;
-        }
-    }
-    if (hay_args == 0) {
-        for (int i = 0; i < MAX_PROCS; ++i) {               // TODO: Un momento O.o
-            if(pids_procesos[i] != -1)
-                printf("[%d]\n",pids_procesos[i]);
-        }
-    }
-}
-
-
-void run_cwd() {
-    char ruta[PATH_MAX];
-    if (!getcwd(ruta, PATH_MAX)) {
-        perror("FALLO DE RUTA");
-        exit(EXIT_FAILURE);
-    }
-    printf("cwd: %s\n", ruta);
-}
-
-/*
- * Devuelve la ruta actual
- */
-char * get_cur_dir() {
-    char * ruta = malloc(PATH_MAX * sizeof(char*));
-    if (!getcwd(ruta, PATH_MAX)) {
-        perror("FALLO DE RUTA");
-        exit(EXIT_FAILURE);
-    }
-    return ruta;
-}
-
-void run_cd_HOME() {
-    char * dir_actual = get_cur_dir();
-    char * dir_home = getenv("HOME");
-    chdir(dir_home);
-    setenv("OLDPWD", dir_actual, true);
-}
-
-void run_cd(char* path) {
-    if (strcmp(path, "-") == 0) {
-        char * dir = getenv("OLDPWD");
-        if (dir != NULL) {
-            run_cd(dir);
-        } else {
-            printf("run_cd: Variable OLDPWD no definida\n");
-        }
-    } else {
-        DIR* dir = opendir(path);
-        if(!dir) {
-            printf("run_cd: No existe el directorio '%s'\n", path);
-        } else {
-            char * dir_actual = get_cur_dir();
-            char * directorio = malloc((PATH_MAX + 1) * sizeof(char*));
-            realpath(path, directorio);
-            if (strcmp(directorio, "") == 0) {
-                perror("run_cd: No existe el directorio\n");
-            } else {
-                int succes = chdir(directorio);
-                if (succes == 0) {
-                    setenv("OLDPWD", dir_actual, true);
-                } else {
-                    perror("NO se ha podido cambiar de directorio\n");
-                }
-                free(directorio);
-            }
-        }
-    }
 }
 
 /******************************************************************************
@@ -1063,17 +886,14 @@ struct cmd* subscmd(struct cmd* subcmd)
     return (struct cmd*) cmd;
 }
 
-void run_exit(struct execcmd * ecmd) {
-
-    // LIMPIAR LA MEMORIA
-    free(ecmd);
-    exit(EXIT_SUCCESS);
-}
-
 /******************************************************************************
  * Funciones para realizar el análisis sintáctico de la línea de órdenes
  ******************************************************************************/
 
+// Delimitadores
+static const char WHITESPACE[] = " \t\r\n\v";
+// Caracteres especiales
+static const char SYMBOLS[] = "<|>&;()";
 
 // `get_token` recibe un puntero al principio de una cadena (`start_of_str`),
 // otro puntero al final de esa cadena (`end_of_str`) y, opcionalmente, dos
@@ -1162,48 +982,47 @@ int get_token(char** start_of_str, char* end_of_str,
 //*          FUNCIONES DE LA PRÁCTICA
 //************************************************************************
 
-int internal_cmd(struct execcmd * ecmd) {
-    if (ecmd->argv[0] == 0) return 0;
-    if (strcmp(ecmd->argv[0], "exit") == 0) {
-        return 1;
-    } else if (strcmp(ecmd->argv[0], "cwd") == 0) {
-        return 2;
-    } else if (strcmp(ecmd->argv[0], "cd") == 0) {
-        return  3;
-    } else  if (strcmp(ecmd->argv[0], "hd") == 0) {
-        return 4;
-    } else if (strcmp(ecmd->argv[0], "src") == 0) {
-        return 5;
-    } else if (strcmp(ecmd->argv[0], "bjobs") == 0) {
-        return 6;
-    }
-    return 0;
-}
+bool internal_cmd(struct execcmd* ecmd){
 
-void exec_internal_cmd(struct execcmd * ecmd) {
-    if (strcmp(ecmd->argv[0], "exit") == 0) {
+    if (strcmp(ecmd->argv[0], "exit") == 0)
+    {
         run_exit(ecmd);
-    } else if (strcmp(ecmd->argv[0], "cwd") == 0) {
-        run_cwd();
-    } else if (strcmp(ecmd->argv[0], "cd") == 0) {
-        if (ecmd->argv[1] != NULL) {
-            if(ecmd->argc > 2) {
-                printf("run_cd: Demasiados argumentos\n");
-            } else {
-                run_cd(ecmd->argv[1]);
-            }
-        } else {
-            run_cd_HOME();
-        }
-    } else if (strcmp(ecmd->argv[0], "hd") == 0) {
-        parse_hd_args(ecmd->argc, ecmd->argv);
-    } else if (strcmp(ecmd->argv[0], "bjobs") == 0) {
-        run_bjobs(ecmd->argc, ecmd->argv);
-    } else if (strcmp(ecmd->argv[0], "src") == 0) {
-        parse_src_args(ecmd->argc, ecmd->argv);
+        return true;
     }
-}
 
+	if (strcmp(ecmd->argv[0], "cwd") == 0) 
+    {
+        run_cwd();
+        return true;
+    }
+
+    if (strcmp(ecmd->argv[0], "cd") == 0) 
+    {
+      run_cd(ecmd);
+      return true;
+    }
+
+    if (strcmp(ecmd->argv[0], "hd") == 0) 
+    {
+        run_hd(ecmd);
+        return true;
+    }
+
+    if (strcmp(ecmd->argv[0], "bjobs") == 0) 
+    {
+        run_bjobs(ecmd);
+        return true;
+    }
+
+    if (strcmp(ecmd->argv[0], "src") == 0) 
+    {
+        run_src(ecmd);
+        return true;
+    }
+
+  return false;
+
+}
 
 
 
@@ -1547,12 +1366,16 @@ void exec_cmd(struct execcmd* ecmd)
 {
     assert(ecmd->type == EXEC);
     if (ecmd->argv[0] == 0) exit(EXIT_SUCCESS);
-    if (internal_cmd(ecmd) > 0) {
-        exec_internal_cmd(ecmd);
-    } else {
+    
+
+    if (!internal_cmd(ecmd)) 
+    {
         execvp(ecmd->argv[0], ecmd->argv);
         panic("no se encontró el comando xd '%s'\n", ecmd->argv[0]);
     }
+
+    free(ecmd);
+    
 }
 
 void free_cmd(struct cmd* cmd);
@@ -1566,10 +1389,12 @@ void run_cmd(struct cmd* cmd)
     struct pipecmd* pcmd;
     struct backcmd* bcmd;
     struct subscmd* scmd;
+    
     int p[2];
     int fd;
-
-    pid_t  pid1;
+    pid_t pid1 = 0;
+    pid_t pid2 = 0;
+    
     DPRINTF(DBG_TRACE, "STR\n");
 
     if(cmd == 0) return;
@@ -1577,66 +1402,53 @@ void run_cmd(struct cmd* cmd)
     switch(cmd->type)
     {
         case EXEC:
+
             ecmd = (struct execcmd*) cmd;
-            if (internal_cmd(ecmd) > 0) {
-                exec_internal_cmd(ecmd);
-            } else {
-                block_SIG_CHLD();
-                if ((pid1 = fork_or_panic("fork EXEC")) == 0)
-                    exec_cmd(ecmd);
-                TRY( waitpid(pid1, NULL, 0) );                        //
-                release_SIG_CHLD();
+            /**
+            si no es un comando interno:
+            1. Crea un hijo
+            2. Copia el codigo padre-hijo con el exec
+            3. El padre espera al hijo
+
+            si es un comando interno, directamente en la comprobación se realiza el
+            run correspondiente.
+            **/
+            if (ecmd->argv[0] != NULL){
+                if (!internal_cmd(ecmd))
+                {   block_SIG_CHLD();
+                    if ((pid1 = fork_or_panic("fork EXEC")) == 0){
+                        exec_cmd(ecmd);
+                    }
+                    TRY( waitpid(pid1,&status,0) );
+                    release_SIG_CHLD();
+                }
             }
             break;
 
         case REDR:
             rcmd = (struct redrcmd*) cmd;
-            int terminal_fd = dup(rcmd->fd);
-            int es_cmd_interno = 0;
-            if (rcmd->cmd->type == EXEC)
-                es_cmd_interno = internal_cmd((struct execcmd*) rcmd->cmd);
-            if(es_cmd_interno > 0) {
-                close(rcmd->fd);
-                if ((fd = open(rcmd->file, rcmd->flags, rcmd->mode)) < 0) {
-                    perror("open");
-                    exit(EXIT_FAILURE);
-                }
-                if (es_cmd_interno == 1) {
 
-                    close(fd);
-                    dup2(terminal_fd, fd);
-                    close(terminal_fd);
-
-                } else {
-                    exec_internal_cmd((struct execcmd*) rcmd->cmd);
-
-                    int error = dup2(terminal_fd, fd);
-
-                    if (error == -1) {
-                        fprintf(stderr, "dup2 error \n");
-                        exit(EXIT_FAILURE);
-                    }
-                }
-            } else {
-                if ((pid1 = fork_or_panic("fork REDR")) == 0) {
-                    TRY(close(rcmd->fd));
-                    if ((fd = open(rcmd->file, rcmd->flags, rcmd->mode)) < 0) {
+                if ((pid1 = fork_or_panic("fork REDR")) == 0)
+                {
+                    TRY( close(rcmd->fd) );
+                    if ((fd = open(rcmd->file, rcmd->flags, rcmd->mode)) < 0)
+                    {
                         perror("open");
                         exit(EXIT_FAILURE);
                     }
-
-                    if (rcmd->cmd->type == EXEC) {
-                        exec_cmd((struct execcmd *) rcmd->cmd);
-                    } else
+                  if(!internal_cmd((struct execcmd*) rcmd->cmd)){
+                    if (rcmd->cmd->type == EXEC)
+                        exec_cmd((struct execcmd*) rcmd->cmd);
+                    else
                         run_cmd(rcmd->cmd);
-                    exit(EXIT_SUCCESS);
+
+
+                      }
+                      exit(EXIT_SUCCESS);
+
                 }
-                if(is_back_process(pid1) == 0) {
-                    block_SIG_CHLD();
-                    TRY(waitpid(pid1, NULL, 0));
-                    release_SIG_CHLD();
-                }
-            }
+                TRY( waitpid(pid1,&status,0) );
+
             break;
 
         case LIST:
@@ -1667,9 +1479,6 @@ void run_cmd(struct cmd* cmd)
                 exit(EXIT_SUCCESS);
             }
 
-            pid_t pid2;
-            int status2;
-
             // Ejecución del hijo de la derecha
             if ((pid2 =fork_or_panic("fork PIPE right")) == 0)
             {
@@ -1677,24 +1486,24 @@ void run_cmd(struct cmd* cmd)
                 TRY( dup(p[0]) );
                 TRY( close(p[0]) );
                 TRY( close(p[1]) );
-                if (pcmd->right->type == EXEC)
-                    exec_cmd((struct execcmd*) pcmd->right);
-                else
-                    run_cmd(pcmd->right);
+                if (!internal_cmd((struct execcmd*) pcmd->right)) {
+                    if (pcmd->right->type == EXEC)
+                        exec_cmd((struct execcmd*) pcmd->right);
+                    else
+                        run_cmd(pcmd->right);
+                }
                 exit(EXIT_SUCCESS);
             }
             TRY( close(p[0]) );
             TRY( close(p[1]) );
 
-            // Esperar a ambos hijos
-            TRY( waitpid(pid1, NULL, 0) );          // TODO FALLA AQUI :S
-            TRY( waitpid(pid2, NULL, 0) );
+            TRY( waitpid(pid1, &status, 0) );
+            TRY( waitpid(pid2, &status, 0) );
             release_SIG_CHLD();
             break;
 
         case BACK:
             bcmd = (struct backcmd*)cmd;
-            block_SIG_CHLD();
             if ((pid1 = fork_or_panic("fork BACK")) == 0)
             {
                 if (bcmd->cmd->type == EXEC)
@@ -1704,19 +1513,17 @@ void run_cmd(struct cmd* cmd)
                 exit(EXIT_SUCCESS);
             }
 
-            int contador = 0;
-            while ((contador < MAX_PROCS) && (pids_procesos[contador] != -1)) {
-                contador++;
+            
+            // lookin for a gap where store the child pid
+            while ((backcounter < MAX_PROCS) && (backpids[backcounter % MAX_PROCS] != -1)) {
+                backcounter++;
             }
 
-            //printf(">%d\n", pid1);
-
-            if (pids_procesos[contador] == -1) {
-                pids_procesos[contador] = pid1;
+            if (backpids[backcounter % MAX_PROCS] == -1) {
+                backpids[backcounter % MAX_PROCS] = pid1;
             }
-            // printf("> %d\n", pid1);
+
             print_processid(pid1);
-            release_SIG_CHLD();
 
             break;
 
@@ -1728,7 +1535,7 @@ void run_cmd(struct cmd* cmd)
                 run_cmd(scmd->cmd);
                 exit(EXIT_SUCCESS);
             }
-            TRY( waitpid(pid1, NULL, 0) );
+            TRY( waitpid(pid1, &status, 0) );
             release_SIG_CHLD();
             break;
 
@@ -1829,6 +1636,7 @@ void free_cmd(struct cmd* cmd)
     switch(cmd->type)
     {
         case EXEC:
+            // ecmd = (struct execcmd*) cmd;
             // free(ecmd);
             break;
 
@@ -1911,6 +1719,7 @@ char* get_cmd()
     prompt = malloc(prompt_size * sizeof(char));
     sprintf(prompt, "%s@%s> ", "alumno", dir_actual);
     //sprintf(prompt, "%s@%s> ", pw->pw_name, dir_actual);
+    //sprintf(prompt, "simplesh> ");
 
     // Lee la orden tecleada por el usuario
     buf = readline(prompt);
@@ -1965,17 +1774,8 @@ int main(int argc, char** argv)
 
     unsetenv("OLDPWD");
 
-    // Aqui debemos inicializar los pids
-    memset(pids_procesos,-1,(sizeof (*pids_procesos)*MAX_PROCS));
-    // memset(secondProcess, -1, MAXBUF);
-    for (int i = 0; i < MAX_PROCS; i++){
-        pids_procesos[i]= -1;
-    }
-
-
     sigemptyset(&signal_child);
     sigaddset(&signal_child, SIGCHLD);
-
 
     //Bloquear la señal SIGINIT
     sigset_t blocked_sig_int;
@@ -1986,29 +1786,23 @@ int main(int argc, char** argv)
         exit(EXIT_FAILURE);
     }
 
+    //Ignorar la seña SIGQUIT
+    struct sigaction newactionsigquit;
+    sigemptyset(&newactionsigquit.sa_mask);
+    newactionsigquit.sa_handler = SIG_IGN;
+    newactionsigquit.sa_flags = 0;
+    sigaction(SIGQUIT, &newactionsigquit, NULL);
 
-    //Bloquear la seña SIGQUIT
-    sigset_t ignore_sig_int;
-    sigemptyset(&ignore_sig_int);
-    sigaddset(&ignore_sig_int, SIGQUIT);
-    if (sigprocmask(SIG_BLOCK, &ignore_sig_int, NULL) == -1){
-        perror(" SIGPROCMASK: SIGQUIT");
-        exit(EXIT_FAILURE);
-    }
-
-
-
+    //Controlar que los proceso hijo no interfieran
     struct sigaction sa;
     memset(&sa, 0, sizeof(sa));
     sa.sa_handler = &handle_sigchld;
+    sa.sa_flags = SA_RESTART;
     sigemptyset(&sa.sa_mask);
-    sa.sa_flags = SA_RESTART | SA_NOCLDSTOP;
     if (sigaction(SIGCHLD, &sa, NULL) == -1) {
         perror(0);
         exit(EXIT_FAILURE);
     }
-
-
 
     char* buf;
     struct cmd* cmd;
@@ -2029,13 +1823,9 @@ int main(int argc, char** argv)
                  __FILE__, __LINE__, __func__);
             print_cmd(cmd); printf("\n"); fflush(NULL); } );
 
-        // Ejecuta la línea de órdenes
         run_cmd(cmd);
-
-        // Libera la memoria de las estructuras `cmd`
         free_cmd(cmd);
         free(cmd);
-        // Libera la memoria de la línea de órdenes
         free(buf);
 
     }
